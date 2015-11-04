@@ -38,6 +38,9 @@ var schema = new mongoose.Schema({
     copsCalled: {
         type: Boolean,
         default: false
+    },
+    notes: {
+        type: String
     }
 
 });

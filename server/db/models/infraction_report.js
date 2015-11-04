@@ -27,6 +27,9 @@ var schema = new mongoose.Schema({
     timestamp: {
     	type: Date,
     	default: Date.now
+    },
+    notes: {
+        type: String
     }
 
 });

@@ -9,9 +9,8 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('LoginCtrl', function ($scope, AuthService, $state) {
-    
-    if(AuthService.getLoggedInUser()) $state.go('home');
 
+    if(AuthService.getLoggedInUser()) $state.go('home');
 
     $scope.login = {};
     $scope.error = null;
