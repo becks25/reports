@@ -47,7 +47,7 @@ describe('Infraction Report model', function () {
 
 
     it('should successfully create an infraction report', function (done) {
-        Report.create({manager: userId, staff: staffId, infraction: 'Tardy'})
+        Report.create({manager: userId, managerName: 'John', staff: staffId, staffName: 'Joe', infraction: 'Tardy'})
         .then(report => {
             expect(report).to.exist;
             done();
@@ -55,7 +55,7 @@ describe('Infraction Report model', function () {
     });
 
     it('should remove an infraction report', function(done){
-        Report.create({manager: userId, staff: staffId, infraction: 'Tardy'})
+        Report.create({manager: userId, managerName: 'John', staff: staffId, staffName: 'Joe', infraction: 'Tardy'})
         .then(report => {
             Report.remove(report)
                 .then(removed => {

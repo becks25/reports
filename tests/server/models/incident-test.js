@@ -56,7 +56,9 @@ describe('Incident Report model', function () {
     var createIncident = () => {
         return Incident.create({
             manager: userId,
+            managerName: 'John',
             staff: [staffId, staffId2],
+            staffNames: ['Joe', 'Jim'],
             report: 'Fighting'
         })
     };
