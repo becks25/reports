@@ -5,6 +5,7 @@ module.exports = router;
 router.use('/members', require('./members'));
 router.use('/users', require('./users'));
 router.use('/staff', require('./staff'));
+router.use('/infractions', require('./infractions'));
 
 // Make sure this is after all of
 // the registered routes!
