@@ -7,6 +7,7 @@ router.use('/users', require('./users'));
 router.use('/staff', require('./staff'));
 router.use('/infractions', require('./infractions'));
 router.use('/report/infractions', require('./infraction_reports'));
+router.use('/report/incidents', require('./incident_reports'));
 
 // Make sure this is after all of
 // the registered routes!
