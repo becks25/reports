@@ -1,0 +1,30 @@
+<div class="report panel" ng-class="{incident: report.report}">
+	<div class="panel-heading">
+		<p>
+			<b>Date:</b> {{report.timestamp}}
+		</p>
+	</div>
+	
+	<div class="panel-body">
+		<p>
+			<b>Staff: </b> {{report.staffName || report.staffNames.join(', ')}}
+		</p>
+
+		<p ng-if="report.infraction">
+			<b>Infraction: </b> {{report.infraction}}
+		</p>
+
+		<p ng-if="report.report">
+			<b>Report:</b> {{report.report}}
+		</p>
+
+		<p ng-if="report.disciplinary">
+			<b>Action:</b> {{report.disciplinary}}
+		</p>
+
+		<p ng-if="report.report">
+			<b>Cops Called:</b> {{report.copsCalled}}
+		</p>
+
+	</div>
+</div>

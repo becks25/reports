@@ -1,3 +1,5 @@
+
+
 * {
   box-sizing: border-box;
 }
@@ -15,13 +17,19 @@ body {
 }
 
 #main {
-  padding-top: 60px;
+  padding-top: 20px;
   width: 100%;
   margin: 0 auto;
 }
 
+
+$salmon: #DF7773;
+$blue: #72A4DF;
+$orange: #DF9B72;
+$gray: #A9A9A9;
+
+.panel-heading{
+  background-color:$gray;
+}
 @import 'directives/main';
-@import 'home/main';
-@import 'about/main';
-@import 'tutorial/main';
 @import 'login/main';

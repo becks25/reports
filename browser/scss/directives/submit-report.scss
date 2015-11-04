@@ -1,0 +1,16 @@
+infraction-form, incident-form{
+	.submit-report{
+		
+		.panel-heading{
+			background-color:$salmon;
+			color:white;
+			text-align:center;
+		}
+		.panel-body{
+			border:1px solid $salmon;
+			margin-bottom:3%;
+		}
+
+	}
+}
+

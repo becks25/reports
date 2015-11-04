@@ -7,9 +7,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
         link: function (scope) {
 
             scope.items = [
-                { label: 'Submit Incident', state: 'home'},
+                { label: 'Home', state: 'manager'},
                 { label: 'Instructions', state: 'home'},
-                { label: 'My Reports', state: 'home'},
                 { label: 'Admin', state: 'home'}
 
             ];

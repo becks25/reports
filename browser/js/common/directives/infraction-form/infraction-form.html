@@ -1,32 +1,35 @@
-<div class="panel-heading">
-	<h3>Submit an Infraction</h3>
-</div>
+<div class="submit-report">
+	<div class="panel-heading">
+		<h3>Submit an Infraction</h3>
+	</div>
 
-<div class="panel-body">
-	<form class="form-horizontal">
-		<div class="form-group">
-			<label for="staff" class="col-sm-3 col-xs-5 control-label">Staff: </label>
+	<div class="panel-body">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="staff" class="col-sm-3 col-xs-5 control-label">Staff: </label>
 
-			<div class="col-sm-9 col-xs-12">
-	  		  <input type="text" ng-model="selected" uib-typeahead="employee for employee in staff | filter:$viewValue | limitTo:8" class="form-control" name="staff">
+				<div class="col-sm-9 col-xs-12">
+		  		  <input type="text" ng-model="selected" uib-typeahead="employee for employee in staff | filter:$viewValue | limitTo:8" class="form-control" name="staff">
 
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<label for="infraction" class="col-sm-3 col-xs-5 control-label">Infraction: </label>
+			<div class="form-group">
+				<label for="infraction" class="col-sm-3 col-xs-5 control-label">Infraction: </label>
 
-			<div class="col-sm-9 col-xs-12">
-				<select class="form-control">
-					<option ng-repeat="infraction in infractions" ng-value="infraction">{{infraction}}</option>
-				</select>
+				<div class="col-sm-9 col-xs-12">
+					<select class="form-control">
+						<option ng-repeat="infraction in infractions" ng-value="infraction">{{infraction}}</option>
+					</select>
 
+				</div>
 			</div>
-		</div>
 
-		<div class="col-sm-9 col-sm-offset-3 col-xs-12">
-			<button type="submit" class="btn btn-default btn-block">Submit Report</button>
-		</div>
+			<div class="col-sm-9 col-sm-offset-3 col-xs-12">
+				<button type="submit" class="btn btn-default btn-block">Submit Report</button>
+			</div>
 
-	</form>
+		</form>
+	</div>
+
 </div>
