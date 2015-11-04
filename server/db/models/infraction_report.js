@@ -16,9 +16,7 @@ var schema = new mongoose.Schema({
     	required: true
     },
     infraction: {
-    	type: Schema.Types.ObjectId, 
-    	ref: 'Infraction', 
-    	required: true
+    	type: String
     },
     timestamp: {
     	type: Date,

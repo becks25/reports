@@ -11,12 +11,10 @@ require('../../../server/db/models');
 var Report = mongoose.model('Infraction_report');
 var User = mongoose.model('User');
 var Staff = mongoose.model('Staff');
-var Infraction = mongoose.model('Infraction');
 
 describe('Infraction Report model', function () {
     var userId;
     var staffId;
-    var infractionId;
 
     beforeEach('Establish DB connection', function (done) {
         if (mongoose.connection.db) return done();
@@ -39,13 +37,6 @@ describe('Infraction Report model', function () {
     });
 
 
-    beforeEach('Create infraction', done => {
-        Infraction.create({name:'Tardy', severity: 3})
-        .then(infraction => {
-            infractionId = infraction._id;
-        }).then(done);
-    });
-
     afterEach('Clear test database', function (done) {
         clearDB(done);
     });
@@ -56,7 +47,7 @@ describe('Infraction Report model', function () {
 
 
     it('should successfully create an infraction report', function (done) {
-        Report.create({manager: userId, staff: staffId, infraction: infractionId})
+        Report.create({manager: userId, staff: staffId, infraction: 'Tardy'})
         .then(report => {
             expect(report).to.exist;
             done();
@@ -64,7 +55,7 @@ describe('Infraction Report model', function () {
     });
 
     it('should remove an infraction report', function(done){
-        Report.create({manager: userId, staff: staffId, infraction: infractionId})
+        Report.create({manager: userId, staff: staffId, infraction: 'Tardy'})
         .then(report => {
             Report.remove(report)
                 .then(removed => {
