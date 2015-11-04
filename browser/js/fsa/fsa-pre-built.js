@@ -51,10 +51,10 @@
     app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q) {
 
         function onSuccessfulLogin(response) {
-            var data = response.data;
-            Session.create(data.id, data.user);
+            var data = response.data.user;
+            Session.create(data._id, data);
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-            return data.user;
+            return data;
         }
 
         // Uses the session factory to see if an

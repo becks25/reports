@@ -1,7 +1,7 @@
 app.config(function ($stateProvider) {
 
     $stateProvider.state('login', {
-        url: '/login',
+        url: '/',
         templateUrl: 'js/login/login.html',
         controller: 'LoginCtrl'
     });
@@ -9,6 +9,9 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('LoginCtrl', function ($scope, AuthService, $state) {
+    
+    if(AuthService.getLoggedInUser()) $state.go('home');
+
 
     $scope.login = {};
     $scope.error = null;

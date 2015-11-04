@@ -10,23 +10,16 @@ var schema = new mongoose.Schema({
     email: {
         type: String
     },
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
     password: {
         type: String
     },
     salt: {
         type: String
-    },
-    twitter: {
-        id: String,
-        username: String,
-        token: String,
-        tokenSecret: String
-    },
-    facebook: {
-        id: String
-    },
-    google: {
-        id: String
     },
     isAdmin: {
         type: Boolean,
