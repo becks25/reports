@@ -3,6 +3,10 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
     email: {
         type: String
     },
@@ -23,6 +27,14 @@ var schema = new mongoose.Schema({
     },
     google: {
         id: String
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    superAdmin: {
+        type: Boolean,
+        default: false
     }
 });
 
