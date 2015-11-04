@@ -3,9 +3,6 @@ var mongoose = require('mongoose');
 module.exports = router;
 var _ = require('lodash');
 var User = mongoose.model('User');
-var Incidents = mongoose.model('Incident');
-var Infractions = mongoose.model('Infraction_report');
-
 
 //get all managers
 router.use('*', (req, res, next) => {
