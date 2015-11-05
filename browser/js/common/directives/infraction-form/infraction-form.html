@@ -4,21 +4,22 @@
 	</div>
 
 	<div class="panel-body">
-		<form class="form-horizontal">
-			<div class="form-group">
+		<form class="form-horizontal" name="newInfraction" ng-submit="newInfraction.$valid && saveInfraction()" novalidate>
+			<div class="form-group" ng-class="{'has-error': newInfraction.staff.$dirty && newInfraction.staff.$invalid || newInfraction.staff.$invalid && newInfraction.$submitted}">
 				<label for="staff" class="col-sm-3 col-xs-5 control-label">Staff: </label>
 
 				<div class="col-sm-9 col-xs-12">
-		  		  <input type="text" ng-model="selected" uib-typeahead="employee for employee in staff | filter:$viewValue | limitTo:8" class="form-control" name="staff">
+		  		  <input type="text" ng-model="infraction_report.staffName" uib-typeahead="employee for employee in staffNames | filter:$viewValue | limitTo:8" class="form-control" name="staff" required>
 
+		  
 				</div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group" ng-class="{'has-error': newInfraction.infraction.$dirty && newInfraction.infraction.$invalid || newInfraction.infraction.$invalid && newInfraction.$submitted}">
 				<label for="infraction" class="col-sm-3 col-xs-5 control-label">Infraction: </label>
 
 				<div class="col-sm-9 col-xs-12">
-					<select class="form-control">
+					<select class="form-control" ng-model="infraction_report.infraction" name="infraction" required>
 						<option ng-repeat="infraction in infractions" ng-value="infraction">{{infraction}}</option>
 					</select>
 
