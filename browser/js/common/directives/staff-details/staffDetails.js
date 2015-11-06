@@ -1,4 +1,4 @@
-app.directive('staffDetails', function () {
+app.directive('staffDetails', function (StaffFactory, UserFactory) {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/staff-details/staff-details.html',
@@ -25,6 +25,26 @@ app.directive('staffDetails', function () {
           });
 
           scope.myreports = scope.infractions.concat(scope.incidents);
+
+          scope.remove = () => {
+            if(!scope.mgmt){
+              StaffFactory.destroy(scope.employee._id)
+              .then(destroyed=> {
+                console.log('success!');
+              })
+              .catch(() => {
+                console.log('error?');
+              });
+            }else{
+              UserFactory.destroy(scope.employee._id)
+              .then(destroyed=> {
+                console.log('success!');
+              })
+              .catch(() => {
+                console.log('error?');
+              });
+            }
+          }
         }
     };
 });
