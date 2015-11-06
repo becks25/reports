@@ -2,14 +2,13 @@
 	<div class="panel-heading">
 		<h3>Submit an Incident</h3>
 	</div>
-
 	<div class="panel-body">
-		<form class="form-horizontal">
-			<div class="form-group">
+		<form class="form-horizontal" name="newIncident" ng-submit="newIncident.$valid && saveIncident()"  novalidate>
+			<div class="form-group" ng-class="{'has-error': newIncident.staff.$dirty && newIncident.staff.$invalid || newIncident.staff.$invalid && newIncident.$submitted}">
 				<label for="staff" class="col-sm-3 col-xs-5 control-label">Staff(s): </label>
 
 				<div class="col-sm-9 col-xs-12">
-		  		  <input type="text" ng-model="selected" uib-typeahead="employee for employee in staff | filter:$viewValue | limitTo:8" class="form-control" name="staff">
+		  		  <input type="text" ng-model="selected" uib-typeahead="employee for employee in staffNames | filter:$viewValue | limitTo:8" class="form-control" name="staff" required>
 
 				</div>
 			</div>
@@ -17,15 +16,18 @@
 			<div class="form-group">
 				<label for="time" class="col-sm-3 col-xs-5 control-label">Time: </label>
 
-				
+	            <div class="col-sm-9 col-xs-12">
+	            	  <uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></uib-timepicker>
+
+	            </div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group" ng-class="{'has-error': newIncident.report.$dirty && newIncident.report.$invalid || newIncident.report.$invalid && newIncident.$submitted}">
 				<label for="report" class="col-sm-3 col-xs-5 control-label">Report: </label>
 				
 				<div class="col-sm-9 col-xs-12">
 
-					<textarea class="form-control" name="report"></textarea>
+					<textarea class="form-control" name="report" ng-model="incident_report.report" required></textarea>
 				</div>
 			</div>
 
@@ -34,7 +36,7 @@
 				
 				<div class="col-sm-9 col-xs-12">
 
-					<textarea class="form-control" name="disciplinary"></textarea>
+					<textarea class="form-control" name="disciplinary" ng-model="incident_report.disciplinary"></textarea>
 				</div>
 			</div>
 
@@ -44,11 +46,11 @@
 
 				<div class="col-sm-9 col-xs-12">
 
+					<label class="radio-inline" >
+						<input type="radio" name="copsCalled" value="no" ng-model="incident_report.copsCalled" checked> No
+					</label>
 					<label class="radio-inline">
-						<input type="radio" name="copsCalled" value="no" checked> No
-						</label>
-						<label class="radio-inline">
-						<input type="radio" name="copsCalled" value="yes"> Yes
+						<input type="radio" name="copsCalled" value="yes" ng-model="incident_report.copsCalled"> Yes
 					</label>
 				</div>
 			</div>

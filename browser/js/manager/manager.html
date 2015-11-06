@@ -1,12 +1,12 @@
 <!--My reports-->
 
-<div class="col-sm-7 col-xs-12 panel">
-	<div class="panel-heading">
+<div class="col-sm-7 col-xs-12 reports_half">
+	<div class="panel-heading" id="reports_header">
 		<h3>My Reports</h3>
 	</div>
 
 
-	<report ng-repeat="report in reports" report="report"></report>
+	<report ng-repeat="report in reports | orderBy: 'report.timestamp': true" report="report"></report>
 
 	<p ng-if="reports.length === 0">
 		You haven't submitted any reports
@@ -14,7 +14,7 @@
 </div>
 
 <!--Submissions-->
-<div class="col-sm-5 col-xs-12 panel">
+<div class="col-sm-5 col-xs-12" id="submissions-panel">
 	<infraction-form></infraction-form>
 	
 	<incident-form></incident-form>

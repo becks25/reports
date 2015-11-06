@@ -1,10 +1,17 @@
 <div class="report panel" ng-class="{incident: report.report}">
 	<div class="panel-heading">
-		<p>
-			<b>Date:</b> {{report.timestamp}}
-		</p>
+		<div class="clearfix">
+			<h4 class="pull-left">
+				<b ng-if="report.report">Incident</b>
+				<b ng-if="!report.report">Infraction</b>
+			</h4>
+
+			<p class="pull-right">
+				{{report.timestamp | date: fulltime}}
+			</p>
+		</div>
 	</div>
-	
+
 	<div class="panel-body">
 		<p>
 			<b>Staff: </b> {{report.staffName || report.staffNames.join(', ')}}

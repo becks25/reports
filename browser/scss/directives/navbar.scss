@@ -1,12 +1,15 @@
 navbar {
 
-  display: block;
-  background: white;
-  border-bottom: 1px solid black;
+
 
   .container {
-    width: 91%;
+    position:fixed;
+    top:0;
+    width: 100%;
     padding-top: 20px;
+      display: block;
+  background: white;
+  border-bottom: 1px solid black;
   }
 
   a {

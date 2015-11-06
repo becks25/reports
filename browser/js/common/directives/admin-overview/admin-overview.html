@@ -1,0 +1,43 @@
+	<div class="panel-heading clearfix">
+		<h3 class="col-sm-3 col-xs-12">Overview</h3>
+		<div class="col-sm-3 col-xs-6">
+			<p class="input-group">
+              <input type="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="startDate.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="startDate.opened = !startDate.opened"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>      
+
+		</div>
+
+		<div class="col-sm-3 col-xs-6">
+      		<p class="input-group">
+              <input type="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="endDate.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="endDate.opened = !endDate.opened"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+		</div>
+
+
+		<div class="col-sm-3 col-xs-6">
+			<button class="btn btn-default">Update</button>
+		</div>
+
+	</div>
+
+	<div class="panel-body clearfix">
+		<p>
+			<b># of Infractions: </b>
+		</p>
+
+		<p>
+			<b># of Incidents: </b>
+		</p>
+
+		<p>
+			<b>Staff with multiple: </b>
+		</p>
+
+
+	</div>

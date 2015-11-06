@@ -7,15 +7,6 @@ app.config(function ($stateProvider) {
         resolve: {
             staff: (StaffFactory) => {
                 return StaffFactory.findAll();
-                    // .then(staff => {
-                    //     var staffArr = [];
-
-                    //     staff.forEach(employee => {
-                    //         staffArr.push(employee.name);
-                    //     });
-
-                    //     return staffArr;
-                    // })
             },
             infractions: (InfractionsFactory) => {
                 return InfractionsFactory.findAll()
@@ -56,13 +47,13 @@ app.config(function ($stateProvider) {
 app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, staff, infractions, reports, InfractionReportFactory) {
     $scope.user = Session.user;
     $scope.staff = staff;
+    $scope.infractions = infractions;
     $scope.staffNames = [];
 
     staff.forEach(employee => {
         $scope.staffNames.push(employee.name);
     });
 
-    $scope.infractions = infractions;
     $scope.reports = reports.filter(report => {
         return report.managerId == $scope.user._id;
     });
@@ -89,6 +80,38 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
         });
 
 
+    };
+
+    $scope.incident_report = {
+        manager: $scope.user._id,
+        managerName: $scope.user.name,
+        copsCalled: 'no'
+    };
+
+    $scope.saveIncident = () => {
+
+    };
+
+    $scope.status = {
+        opened: false
+    };
+
+    $scope.open = function($event) {
+        $scope.status.opened = true;
+    };
+
+    $scope.mytime = new Date();
+
+ 
+    $scope.toggleMode = function() {
+        $scope.ismeridian = ! $scope.ismeridian;
+    };
+
+    $scope.update = function() {
+        var d = new Date();
+        d.setHours( 14 );
+        d.setMinutes( 0 );
+        $scope.mytime = d;
     };
 
 
