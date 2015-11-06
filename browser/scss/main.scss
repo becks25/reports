@@ -28,6 +28,10 @@ $blue: #72A4DF;
 $orange: #DF9B72;
 $gray: #A9A9A9;
 
+.gray-header{
+  background-color:$gray;
+}
+
 
 @import 'directives/main';
 @import 'login/main';

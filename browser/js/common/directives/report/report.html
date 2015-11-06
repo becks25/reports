@@ -1,5 +1,5 @@
 <div class="report panel" ng-class="{incident: report.report}">
-	<div class="panel-heading">
+	<div class="panel-heading gray-header">
 		<div class="clearfix">
 			<h4 class="pull-left">
 				<b ng-if="report.report">Incident</b>
@@ -14,6 +14,10 @@
 
 	<div class="panel-body">
 		<p>
+			<b>Manager: </b> {{report.managerName}}
+		</p>
+
+		<p>
 			<b>Staff: </b> {{report.staffName || report.staffNames.join(', ')}}
 		</p>
 
@@ -21,16 +25,12 @@
 			<b>Infraction: </b> {{report.infraction}}
 		</p>
 
-		<p ng-if="report.report">
-			<b>Report:</b> {{report.report}}
+		<p ng-if="report.report" class="text-center">
+			<b>See more</b>
 		</p>
 
 		<p ng-if="report.disciplinary">
 			<b>Action:</b> {{report.disciplinary}}
-		</p>
-
-		<p ng-if="report.report">
-			<b>Cops Called:</b> {{report.copsCalled}}
 		</p>
 
 	</div>

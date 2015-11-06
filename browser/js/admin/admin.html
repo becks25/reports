@@ -3,5 +3,23 @@
 	<admin-overview></admin-overview>
 
 	<all-reports></all-reports>
+
+	<div class="panel-heading">
+		<h3>Staff</h3>
+	</div>
+
+	<div class="panel-body">
+		<staff-details ng-repeat="employee in staff" employee="employee" reports="reports" mgmt="false" class="col-sm-6"></staff-details>
+	</div>
+
+
+	<div class="panel-heading">
+		<h3>Managers</h3>
+	</div>
+
+	<div class="panel-body">
+		<staff-details ng-repeat="manager in managers" employee="manager" reports="reports" mgmt="true" class="col-sm-6"></staff-details>
+	</div>
+
 </div>
 
