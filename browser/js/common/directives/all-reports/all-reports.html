@@ -1,0 +1,75 @@
+<div class="panel-heading">
+	<h3>Reports</h3>
+</div>
+<!--sidebar filter-->
+<div class="panel-body">
+	<div class="col-sm-2">
+		<div class="filter-category" ng-click="mgmtCollapsed = !mgmtCollapsed">Managers</div>
+
+		<!--managers filter-->
+		<div uib-collapse="mgmtCollapsed">
+			<div class="filter-options">
+				<p ng-repeat="manager in managers">
+					<input type="checkbox" value="manager._id" checked="manager.checked" ng-model="managers[$index].checked">
+					 {{manager.name}}
+				</p>
+			</div>
+		</div>
+
+		<!--staff filter-->
+		<div class="filter-category" ng-click="staffCollapsed = !staffCollapsed">Staff</div>
+
+		<div uib-collapse="staffCollapsed">
+			<div class="filter-options">
+				<p ng-repeat="employee in staff">
+					<input type="checkbox" value="employee._id" checked="employee.checked" ng-model="staff[$index].checked">
+					 {{employee.name}}
+				</p>
+			</div>
+		</div>
+
+		<!--infraction filter-->
+		<div class="filter-category" ng-click="infractionCollapsed = !infractionCollapsed">Infraction</div>
+
+		<div uib-collapse="infractionCollapsed">
+			<div class="filter-options">
+				<p ng-repeat="inf in infractions">
+					<input type="checkbox" value="inf.name" checked="inf.checked" ng-model="infractions[$index].checked">
+					 {{inf.name}}
+				</p>
+			</div>
+		</div>
+
+		<!--incident filter-->
+		<div class="filter-category" ng-click="incidentCollapsed = !incidentCollapsed">Incident</div>
+
+		<div uib-collapse="incidentCollapsed">
+			<div class="filter-options">
+				<p>
+					<input type="checkbox" value="yes" checked>
+					Cops Called
+				</p>
+
+				<p>
+					<input type="checkbox" value="no" checked>
+					Cops Not Called
+				</p>
+			</div>
+		</div>
+
+		<!--date range filter-->
+		<div class="filter-category" ng-click="dateCollapsed = !dateCollapsed">Date Range</div>
+
+		<div uib-collapse="dateCollapsed">
+			<div class="filter-options">
+				dates
+			</div>
+		</div>
+
+	</div>
+
+	<div class="col-sm-10">
+		<report class="col-sm-4 col-xs-12" ng-repeat="report in reports | reportFilter: managers: staff: infractions| orderBy: 'report.timestamp': true " report="report"></report>
+	</div>
+
+</div>
