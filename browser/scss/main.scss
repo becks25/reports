@@ -27,11 +27,34 @@ $salmon: #DF7773;
 $blue: #72A4DF;
 $orange: #DF9B72;
 $gray: #A9A9A9;
+$green: #72DFAD;
 
 .gray-header{
   background-color:$gray;
 }
 
+.blue-header{
+  background-color:rgba($blue, 0.7);
+  color:white;
+  margin-top:1%;
+}
+
+.footer{
+  height:30px;
+  width:100%;
+}
+
+.gray-outline{
+  border:1px solid $gray;
+}
+
+.green{
+  background-color:$green;
+}
+
+.blue{
+  background-color:$blue;
+}
 
 @import 'directives/main';
 @import 'login/main';

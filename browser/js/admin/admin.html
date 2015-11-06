@@ -1,25 +1,43 @@
 <!--Week overview-->
+<ul class="nav nav-tabs">
+  <li role="presentation" ng-class={"active":views.overview} ng-click="view('overview')"><a href="#">Overview</a></li>
+  <li role="presentation" ng-class={"active":views.reports} ng-click="view('reports')"><a href="#">Reports</a></li>
+  <li role="presentation" ng-class={"active":views.staff} ng-click="view('staff')"><a href="#">Staff</a></li>
+  <li role="presentation" ng-class={"active":views.managers} ng-click="view('managers')"><a href="#">Managers</a></li>
+
+</ul>
 <div class="col-sm-12">
-	<admin-overview></admin-overview>
+	<admin-overview ng-if="views.overview"></admin-overview>
 
-	<all-reports></all-reports>
+	<all-reports ng-if="views.reports" reports="reports" managers="managers" staff="staff" infractions="infractions"></all-reports>
 
-	<div class="panel-heading">
-		<h3>Staff</h3>
+	<div ng-if="views.staff">
+		<div class="panel-heading blue-header">
+			<h3> 
+				Staff
+			</h3>
+		</div>
+
+		<div class="panel-body">
+			<staff-details ng-repeat="employee in staff" employee="employee" reports="reports" mgmt="false" class="col-sm-6"></staff-details>
+		</div>
+
 	</div>
 
-	<div class="panel-body">
-		<staff-details ng-repeat="employee in staff" employee="employee" reports="reports" mgmt="false" class="col-sm-6"></staff-details>
+	<div ng-if="views.managers">
+		<div class="panel-heading blue-header">
+			<h3>
+
+				Managers
+			</h3>
+		</div>
+
+		<div class="panel-body">
+			<staff-details ng-repeat="manager in managers" employee="manager" reports="reports" mgmt="true" class="col-sm-6"></staff-details>
+		</div>
+
 	</div>
-
-
-	<div class="panel-heading">
-		<h3>Managers</h3>
-	</div>
-
-	<div class="panel-body">
-		<staff-details ng-repeat="manager in managers" employee="manager" reports="reports" mgmt="true" class="col-sm-6"></staff-details>
-	</div>
-
+	<div class="footer"></div>
 </div>
+
 

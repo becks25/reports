@@ -27,24 +27,11 @@ app.config(function ($stateProvider) {
                         return infractionArr;
                     })
             },
-            reports: (IncidentReportFactory, InfractionReportFactory) => {
-                return IncidentReportFactory.findAll()
-                    .then(incidents => {
-                        return InfractionReportFactory.findAll()
-                        .then(infractions => {
-                            var reportsArr = [];
-
-                            incidents.forEach(incident => {
-                                reportsArr.push(incident);
-                            });
-
-                            infractions.forEach(infraction => {
-                                reportsArr.push(infraction);
-                            });
-
-                            return reportsArr;
-                        })
-                    })
+            incidentReports: (IncidentReportFactory) => {
+                return IncidentReportFactory.findAll();
+            },
+            infractionReports: (InfractionReportFactory) => {
+                return InfractionReportFactory.findAll();
             }
         }
     });

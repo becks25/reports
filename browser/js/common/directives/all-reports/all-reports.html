@@ -1,4 +1,4 @@
-<div class="panel-heading">
+<div class="panel-heading blue-header">
 	<h3>Reports</h3>
 </div>
 <!--sidebar filter-->
@@ -7,7 +7,7 @@
 		<div class="filter-category" ng-click="mgmtCollapsed = !mgmtCollapsed">Managers</div>
 
 		<!--managers filter-->
-		<div uib-collapse="mgmtCollapsed">
+		<div>
 			<div class="filter-options">
 				<p ng-repeat="manager in managers">
 					<input type="checkbox" value="manager._id" checked="manager.checked" ng-model="managers[$index].checked">
@@ -19,7 +19,7 @@
 		<!--staff filter-->
 		<div class="filter-category" ng-click="staffCollapsed = !staffCollapsed">Staff</div>
 
-		<div uib-collapse="staffCollapsed">
+		<div >
 			<div class="filter-options">
 				<p ng-repeat="employee in staff">
 					<input type="checkbox" value="employee._id" checked="employee.checked" ng-model="staff[$index].checked">
@@ -31,7 +31,7 @@
 		<!--infraction filter-->
 		<div class="filter-category" ng-click="infractionCollapsed = !infractionCollapsed">Infraction</div>
 
-		<div uib-collapse="infractionCollapsed">
+		<div>
 			<div class="filter-options">
 				<p ng-repeat="inf in infractions">
 					<input type="checkbox" value="inf.name" checked="inf.checked" ng-model="infractions[$index].checked">
@@ -43,7 +43,7 @@
 		<!--incident filter-->
 		<div class="filter-category" ng-click="incidentCollapsed = !incidentCollapsed">Incident</div>
 
-		<div uib-collapse="incidentCollapsed">
+		<div >
 			<div class="filter-options">
 				<p>
 					<input type="checkbox" value="yes" checked>
@@ -60,7 +60,7 @@
 		<!--date range filter-->
 		<div class="filter-category" ng-click="dateCollapsed = !dateCollapsed">Date Range</div>
 
-		<div uib-collapse="dateCollapsed">
+		<div >
 			<div class="filter-options">
 				dates
 			</div>
