@@ -66,4 +66,11 @@ app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staf
         $scope.views[tab]=true;
     };
 
+    $scope.mgmtName;
+
+    $scope.stfName;
+
+    $scope.repMin;
+
+    $scope.repMax;
 });

@@ -36,3 +36,36 @@ app.filter('reportFilter', function(){
 
     }
 });
+
+app.filter('staffFilter', function() {
+    return function(staff, numbers, minInf, maxInf){
+        var filtered = [];
+        var min, max;
+        var names = [];
+        console.log(numbers, minInf, maxInf);
+
+        if(!minInf) min = 0;
+        else min = minInf;
+
+        if(maxInf) max = maxInf;
+
+        for(var key in numbers){
+
+            if(max){
+                if(numbers[key] >= min && numbers[key] <= max){
+                    names.push(key);
+                };
+            }else{
+                if(numbers[key] >= min){
+                    names.push(key);
+                }
+            }
+        };
+
+        staff.forEach(employee => {
+            if(names.indexOf(employee.name) !== -1) filtered.push(employee);
+        })
+
+        return filtered;
+    }
+});
