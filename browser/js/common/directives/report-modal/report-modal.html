@@ -1,0 +1,42 @@
+<div class="panel">
+	<div class="panel-heading gray-header">
+		<h4>Incident</h4>
+	</div>
+
+	</div class="panel-heading report-modal">
+		<p>
+			<b>Manager: </b>
+			{{report.managerName}}
+		</p>
+
+		<p>
+			<b>Staff Involved: </b>
+			{{report.staffNames.join(', ')}}
+		</p>
+
+		<p>
+			<b>Time: </b>
+			{{report.time}}
+		</p>
+
+		<p>
+			<b>Report: </b>
+			{{report.report}}
+		</p>
+
+		<p>
+			<b>Disciplinary action: </b>
+			{{report.disciplinary || 'None taken'}}
+		</p>
+
+		<p>
+			<b>Cops called: </b>
+			{{report.copsCalled}}
+		</p>
+
+		<p class="text-center">
+			<button class="btn btn-info">Edit</button>
+			<button class="btn btn-default" ng-click="close()">Close</button>
+		</p>
+	</div>
+</div>

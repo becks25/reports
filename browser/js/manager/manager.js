@@ -144,7 +144,10 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
     };
 
     if($scope.now.hour < 12) $scope.now.m = 'AM';
-    else $scope.now.m = 'PM';
+    else{
+        $scope.now.m = 'PM';
+        if($scope.now.hour > 12) $scope.now.hour -= 12;
+    }
 
     $scope.addStaff =() => {
         $scope.incident_report.staffNames.push($scope.selected);
