@@ -28,6 +28,18 @@
 			</div>
 		</div>
 
+		<!--type filter-->
+		<div class="filter-category">Report Type</div>
+
+		<div>
+			<div class="filter-options">
+				<p ng-repeat="(key, value) in type">
+					<input type="checkbox" value="key" checked="value" ng-model="type[key]">
+					{{key}}
+				</p>
+			</div>
+		</div>
+
 		<!--infraction filter-->
 		<div class="filter-category" ng-click="infractionCollapsed = !infractionCollapsed">Infraction</div>
 
@@ -41,19 +53,15 @@
 		</div>
 
 		<!--incident filter-->
-		<div class="filter-category" ng-click="incidentCollapsed = !incidentCollapsed">Incident</div>
+		<div class="filter-category" ng-click="incidentCollapsed = !incidentCollapsed">Cops Called</div>
 
 		<div >
 			<div class="filter-options">
-				<p>
-					<input type="checkbox" value="yes" checked>
-					Cops Called
+				<p ng-repeat="(key, value) in cops">
+					<input type="checkbox" value="key" checked="value" ng-model="cops[key]">
+					{{key}}
 				</p>
-
-				<p>
-					<input type="checkbox" value="no" checked>
-					Cops Not Called
-				</p>
+				
 			</div>
 		</div>
 
@@ -69,7 +77,7 @@
 	</div>
 
 	<div class="col-sm-10">
-		<report class="col-sm-4 col-xs-12" ng-repeat="report in reports | reportFilter: managers: staff: infractions| orderBy: 'report.timestamp': true " report="report"></report>
+		<report class="col-sm-4 col-xs-12" ng-repeat="report in reports | reportFilter: managers: staff: infractions: type: cops| orderBy: 'report.timestamp': true " report="report"></report>
 	</div>
 
 </div>

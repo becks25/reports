@@ -79,6 +79,7 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
             $scope.newInfraction.$setPristine();
 
             console.log('successfully saved');
+            $scope.$apply();
         });
 
 
@@ -126,6 +127,7 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
             $scope.infractions.push(saved);
             $scope.newIncident.$setPristine();
             console.log('successfully saved');
+            $scope.$digest();
         });
     };
 

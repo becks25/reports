@@ -1,9 +1,16 @@
 <div class="submit-report">
-	<div class="panel-heading blue-header">
+	<div class="panel-heading blue-header" ng-if="!edit">
 		<h3>Submit an Incident</h3>
 	</div>
 	<div class="panel-body">
 		<form class="form-horizontal" name="newIncident" ng-submit="newIncident.$valid && saveIncident()"  novalidate>
+			<div class="form-group" ng-if="edit">
+				<label class="col-sm-3 col-xs-5 control-label">Manager: </label>
+
+				<div class="col-sm-9 col-xs-12">
+					{{report.managerName}}
+				</div>
+			</div>
 			<div class="form-group" ng-class="{'has-error': staffError ||  incident_report.staffNames.length === 0 && newIncident.$submitted }">
 				<label for="staff" class="col-sm-3 col-xs-5 control-label">Staff: </label>
 
@@ -66,6 +73,14 @@
 				</div>
 			</div>
 
+			<div class="form-group" ng-if="edit">
+				<label for="notes" class="col-sm-3 col-xs-5 control-label">Notes: </label>
+				
+				<div class="col-sm-9 col-xs-12">
+
+					<textarea class="form-control" name="notes" ng-model="incident_report.notes"></textarea>
+				</div>
+			</div>
 			<div class="form-group">
 
 				<label for="cops" class="col-sm-3 col-xs-5 control-label">Cops Called: </label>
@@ -82,7 +97,7 @@
 			</div>
 
 
-			<div class="col-sm-9 col-sm-offset-3 col-xs-12">
+			<div class="col-sm-9 col-sm-offset-3 col-xs-12" ng-hide="edit">
 				<button type="submit" class="btn btn-default btn-block">Submit Report</button>
 			</div>
 

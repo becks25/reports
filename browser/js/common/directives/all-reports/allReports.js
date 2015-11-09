@@ -14,7 +14,15 @@ app.directive('allReports', function () {
           scope.infractionCollapsed = false;
           scope.incidentCollapsed = false;
           scope.dateCollapsed = false;
+          scope.type = {
+            Infraction: true,
+            Incident: true
+          };
 
+          scope.cops = {
+            No: true,
+            Yes: true
+          };
         }
     };
 });

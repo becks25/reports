@@ -4,38 +4,39 @@
 	</div>
 
 	</div class="panel-heading report-modal">
-		<p>
+		<p ng-hide="edit">
 			<b>Manager: </b>
 			{{report.managerName}}
 		</p>
 
-		<p>
+		<p ng-hide="edit">
 			<b>Staff Involved: </b>
 			{{report.staffNames.join(', ')}}
 		</p>
 
-		<p>
+		<p  ng-hide="edit">
 			<b>Time: </b>
-			{{report.time}}
+			{{report.time | date: 'medium'}}
 		</p>
 
-		<p>
+		<p  ng-hide="edit">
 			<b>Report: </b>
 			{{report.report}}
 		</p>
 
-		<p>
+		<p  ng-hide="edit">
 			<b>Disciplinary action: </b>
 			{{report.disciplinary || 'None taken'}}
 		</p>
 
-		<p>
+		<p  ng-hide="edit">
 			<b>Cops called: </b>
 			{{report.copsCalled}}
 		</p>
 
+		<incident-form ng-show="edit"></incident-form>
 		<p class="text-center">
-			<button class="btn btn-info">Edit</button>
+			<button class="btn btn-info" ng-click="edit = !edit">Edit</button>
 			<button class="btn btn-default" ng-click="close()">Close</button>
 		</p>
 	</div>

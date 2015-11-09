@@ -1,5 +1,5 @@
 app.filter('reportFilter', function(){
-    return function(reports, managers, staff, infractions){
+    return function(reports, managers, staff, infractions, type, cops){
         var filtered = [];
 
         var checkedManagers = [];
@@ -14,9 +14,14 @@ app.filter('reportFilter', function(){
         });
 
         var checkedInf = [];
-        infractions.forEach(inf => {
-            if(inf.checked) checkedInf.push(inf.name);
-        })
+
+        if(type.Infraction){
+            infractions.forEach(inf => {
+                if(inf.checked) checkedInf.push(inf.name);
+            });
+        };
+
+        console.log(cops);
 
         reports.forEach(report => {
             var valid = true;
@@ -27,7 +32,13 @@ app.filter('reportFilter', function(){
                 if(checkedInf.indexOf(report.infraction) === -1) valid = false;
             }else{
                 if(!report.staffNames.some(name => checkedStaff.indexOf(name) !== -1)) valid = false;
+                if(!type.Incident) valid = false;
+                if(report.copsCalled === false && cops['No'] === false) valid = false;
+                if(report.copsCalled === true && cops['Yes'] === false) valid = false;
+
             }
+
+
 
             if(valid) filtered.push(report);
         });

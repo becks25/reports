@@ -14,9 +14,13 @@ app.directive('report', function ($uibModal) {
               controller: function($scope, $uibModalInstance){
                 $scope.report = scope.report;
 
+                $scope.incident_report = $scope.report;
+
                 $scope.close = () => {
                   $uibModalInstance.dismiss('cancel');
-                }
+                };
+
+                $scope.edit = false;
               }
             });
           }
