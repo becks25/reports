@@ -4,23 +4,49 @@
 	</div>
 	<div class="panel-body">
 		<form class="form-horizontal" name="newIncident" ng-submit="newIncident.$valid && saveIncident()"  novalidate>
-			<div class="form-group" ng-class="{'has-error': newIncident.staff.$dirty && newIncident.staff.$invalid || newIncident.staff.$invalid && newIncident.$submitted}">
-				<label for="staff" class="col-sm-3 col-xs-5 control-label">Staff(s): </label>
+			<div class="form-group" ng-class="{'has-error': staffError ||  incident_report.staffNames.length === 0 && newIncident.$submitted }">
+				<label for="staff" class="col-sm-3 col-xs-5 control-label">Staff: </label>
 
 				<div class="col-sm-9 col-xs-12">
-		  		  <input type="text" ng-model="selected" uib-typeahead="employee for employee in staffNames | filter:$viewValue | limitTo:8" class="form-control" name="staff" required>
+				    <div class="input-group">
+				      <input type="text" class="form-control" placeholder="Search by name..." ng-model="selected" uib-typeahead="employee for employee in staffNames | filter:$viewValue | limitTo:8" class="form-control" >
+				      <span class="input-group-btn" >
+				        <button class="btn btn-default" ng-class="{'btn-danger': staffError ||  incident_report.staffNames.length === 0 && newIncident.$submitted }" type="button" ng-click="addStaff()">Add</button>
+				      </span>
+				    </div>
+				</div>
 
+			</div>
+			<!-- create input group with add button, add employees to list below to send to db-->
+			<div class="form-group">
+				<label for="staff" class="col-sm-3 col-xs-5 control-label"></label>
+
+				<div class="col-sm-9 col-xs-12">
+					{{incident_report.staffNames.join(", ")}}
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="time" class="col-sm-3 col-xs-5 control-label">Time: </label>
 
-	            <div class="col-sm-9 col-xs-12">
-	            	  <uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></uib-timepicker>
+	            <div class="col-sm-3 col-xs-4" ng-class="{'has-error': !now.hour}">
+	            	  <input type="number" class="form-control" min="1" max="12" ng-model="now.hour"/>
+            	</div>
+
+            	<div class="col-sm-3 col-xs-4" ng-class="{'has-error': !now.minute && now.minute !== 0}">
+	            	  <input type="number" class="form-control" max="59" ng-model="now.minute" />
+	            </div>
+
+	            <div class="col-sm-3 col-xs-4">
+
+	            	  <select class="form-control" ng-model="now.m">
+	            	  	<option value="AM">AM</option>
+	            	  	<option value="PM">PM</option>
+	            	  </select>
 
 	            </div>
 			</div>
+
 
 			<div class="form-group" ng-class="{'has-error': newIncident.report.$dirty && newIncident.report.$invalid || newIncident.report.$invalid && newIncident.$submitted}">
 				<label for="report" class="col-sm-3 col-xs-5 control-label">Report: </label>
@@ -47,10 +73,10 @@
 				<div class="col-sm-9 col-xs-12">
 
 					<label class="radio-inline" >
-						<input type="radio" name="copsCalled" value="no" ng-model="incident_report.copsCalled" checked> No
+						<input type="radio" name="copsCalled" value="false" ng-model="incident_report.copsCalled" checked> No
 					</label>
 					<label class="radio-inline">
-						<input type="radio" name="copsCalled" value="yes" ng-model="incident_report.copsCalled"> Yes
+						<input type="radio" name="copsCalled" value="true" ng-model="incident_report.copsCalled"> Yes
 					</label>
 				</div>
 			</div>

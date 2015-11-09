@@ -44,7 +44,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, staff, infractions, reports, InfractionReportFactory) {
+app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, staff, infractions, reports, InfractionReportFactory, IncidentReportFactory) {
     $scope.user = Session.user;
     $scope.staff = staff;
     $scope.infractions = infractions;
@@ -76,6 +76,8 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
         InfractionReportFactory.create($scope.infraction_report)
         .then(saved => {
             $scope.infractions.push(saved);
+            $scope.newInfraction.$setPristine();
+
             console.log('successfully saved');
         });
 
@@ -85,11 +87,46 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
     $scope.incident_report = {
         manager: $scope.user._id,
         managerName: $scope.user.name,
-        copsCalled: 'no'
+        copsCalled: 'false',
+        staffNames: [],
+        staff: []
     };
 
+    $scope.staffError = false;
     $scope.saveIncident = () => {
+        //add staff ids
+        if($scope.incident_report.staffNames.length === 0){
+            $scope.staffError = true;
+            return;
+        }
+        $scope.staff.forEach(employee => {
+            if($scope.incident_report.staffNames.indexOf(employee.name) !== -1) $scope.incident_report.staff.push(employee._id);
+        });
 
+        //set incident time in right format
+        $scope.currentTime.setMinutes($scope.now.minute);
+        if($scope.now.m === 'PM' && $scope.now.hour > 12) $scope.now.hour += 12;
+        $scope.currentTime.setHours($scope.now.hour);
+        $scope.incident_report.time = $scope.currentTime;
+
+        //save copsCalled boolean in right format
+        if($scope.incident_report.copsCalled == 'false') $scope.copsCalled = false;
+        else $scope.incident_report.copsCalled = true;
+
+        IncidentReportFactory.create($scope.incident_report)
+        .then(saved => {
+            $scope.incident_report = {
+                manager: $scope.user._id,
+                managerName: $scope.user.name,
+                copsCalled: 'false',
+                staffNames: [],
+                staff: []
+            }; 
+            
+            $scope.infractions.push(saved);
+            $scope.newIncident.$setPristine();
+            console.log('successfully saved');
+        });
     };
 
     $scope.status = {
@@ -100,19 +137,18 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
         $scope.status.opened = true;
     };
 
-    $scope.mytime = new Date();
-
- 
-    $scope.toggleMode = function() {
-        $scope.ismeridian = ! $scope.ismeridian;
+    $scope.currentTime = new Date(Date.now());
+    $scope.now = {
+        hour: $scope.currentTime.getHours(),
+        minute: $scope.currentTime.getMinutes()
     };
 
-    $scope.update = function() {
-        var d = new Date();
-        d.setHours( 14 );
-        d.setMinutes( 0 );
-        $scope.mytime = d;
-    };
+    if($scope.now.hour < 12) $scope.now.m = 'AM';
+    else $scope.now.m = 'PM';
 
+    $scope.addStaff =() => {
+        $scope.incident_report.staffNames.push($scope.selected);
+        $scope.selected = "";
+    };
 
 });
