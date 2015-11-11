@@ -40,6 +40,14 @@ app.directive('report', function ($uibModal, IncidentReportFactory) {
                     console.log('success', saved);
                     $scope.close();
                   });
+                };
+
+                $scope.delete_incident = () => {
+                  IncidentReportFactory.destroy($scope.incident_report)
+                  .then(deleted => {
+                    console.log('success');
+                    $scope.close();
+                  });
                 }
               }
             });
