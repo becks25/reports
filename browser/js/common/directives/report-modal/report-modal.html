@@ -36,7 +36,8 @@
 
 		<incident-form ng-show="edit"></incident-form>
 		<p class="text-center">
-			<button class="btn btn-info" ng-click="edit = !edit">Edit</button>
+			<button ng-show="!edit" class="btn btn-info" ng-click="edit = !edit">Edit</button>
+			<button ng-show="edit" class="btn btn-success" ng-click="save_incident()">Save</button>
 			<button class="btn btn-default" ng-click="close()">Close</button>
 		</p>
 	</div>

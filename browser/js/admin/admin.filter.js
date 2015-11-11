@@ -21,8 +21,6 @@ app.filter('reportFilter', function(){
             });
         };
 
-        console.log(cops);
-
         reports.forEach(report => {
             var valid = true;
             if(checkedManagers.indexOf(report.managerName) === -1) valid = false;
@@ -53,7 +51,6 @@ app.filter('staffFilter', function() {
         var filtered = [];
         var min, max;
         var names = [];
-        console.log(numbers, minInf, maxInf);
 
         if(!minInf) min = 0;
         else min = minInf;

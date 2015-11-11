@@ -30,7 +30,7 @@ router.post('/', (req, res, next) => {
 
 //edit one
 router.put('/:incidentId', (req, res, next) => {
-    if (!req.user.isAdmin && !req.user.superAdmin || !req.expired){
+    if (!req.user.isAdmin && !req.user.superAdmin && !req.expired){
         res.sendStatus(401);
         return;
     }
@@ -42,7 +42,7 @@ router.put('/:incidentId', (req, res, next) => {
 
 //delete one
 router.delete('/:incidentId', (req, res, next) => {
-    if (!req.user.isAdmin && !req.user.superAdmin || !req.expired){
+    if (!req.user.isAdmin && !req.user.superAdmin && !req.expired){
         res.sendStatus(401);
         return;
     }
