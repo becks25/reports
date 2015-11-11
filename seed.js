@@ -116,7 +116,8 @@ connectToDb.then(function () {
                                     managerName: users[i].name,
                                     staff: staff[i]._id,
                                     staffName: staff[i].name,
-                                    infraction: infractions[i].name
+                                    infraction: infractions[i].name,
+                                    severity: 2
                                 });
                             };
 

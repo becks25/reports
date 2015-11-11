@@ -26,6 +26,17 @@
 				</div>
 			</div>
 
+			<div class="form-group" ng-class="{'has-error': newInfraction.severity.$invalid && newInfraction.severity.$dirty || newInfraction.severity.$invalid && newInfraction.$submitted}">
+						<label for="severity" class="col-sm-3 col-xs-5 control-label">Severity: </label>
+
+						<div class="col-sm-9 col-xs-12">
+				  		  <input type="number" max="4" min="1" ng-model="new_infraction.severity" class="form-control" name="severity" required/>
+
+				  
+						</div>
+					</div>
+
+
 			<div class="col-sm-9 col-sm-offset-3 col-xs-12">
 				<button type="submit" class="btn btn-default btn-block">Submit Report</button>
 			</div>

@@ -21,7 +21,7 @@
 		<div class="panel-body">
 			<div class="col-sm-12">
 
-				<div class="col-sm-6">
+				<div class="col-md-6 col-sm-12">
 				    <div class="input-group">
 				      <input type="text" class="form-control" placeholder="Search by name..." ng-model="stfName">
 				      <span class="input-group-btn">
@@ -30,7 +30,7 @@
 				    </div>
 				</div>
 
-				<div class="col-sm-6 form-horizontal">
+				<div class="col-md-6 col-sm-12 form-horizontal">
 				    <div class="form-group">
 						<label class="col-sm-4 col-xs-5 control-label">Reports: </label>
 
@@ -51,7 +51,7 @@
 
 		<div class="panel-body">
 
-			<staff-details ng-repeat="employee in staff | filter:{name:stfName} | staffFilter:staffNumbers:repMin:repMax" employee="employee" reports="reports" mgmt="false" class="col-sm-6"></staff-details>
+			<staff-details ng-repeat="employee in staff | filter:{name:stfName} | staffFilter:staffNumbers:repMin:repMax" employee="employee" reports="reports" mgmt="false" class="col-md-6 col-sm-12"></staff-details>
 		</div>
 
 	</div>
@@ -65,7 +65,7 @@
 		</div>
 
 		<div class="panel-body">
-			<div class="col-sm-6">
+			<div class="col-md-6 col-sm-12">
 				    <div class="input-group">
 				      <input type="text" class="form-control" placeholder="Search by name..." ng-model="mgmtName">
 				      <span class="input-group-btn">
@@ -76,7 +76,7 @@
 			</div>
 
 		<div class="panel-body">
-			<staff-details ng-repeat="manager in managers | filter: {name:mgmtName}" employee="manager" reports="reports" mgmt="true" class="col-sm-6"></staff-details>
+			<staff-details ng-repeat="manager in managers | filter: {name:mgmtName}" employee="manager" reports="reports" mgmt="true" class="col-md-6 col-sm-12"></staff-details>
 		</div>
 
 	</div>

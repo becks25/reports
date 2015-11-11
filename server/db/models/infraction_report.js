@@ -28,6 +28,9 @@ var schema = new mongoose.Schema({
     	type: Date,
     	default: Date.now
     },
+    severity: {
+        type: Number
+    },
     notes: {
         type: String
     }
