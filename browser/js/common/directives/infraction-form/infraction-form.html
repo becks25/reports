@@ -6,9 +6,9 @@
 	<div class="panel-body">
 		<form class="form-horizontal" name="newInfraction" ng-submit="newInfraction.$valid && saveInfraction()" novalidate>
 			<div class="form-group" ng-class="{'has-error': newInfraction.staff.$dirty && newInfraction.staff.$invalid || newInfraction.staff.$invalid && newInfraction.$submitted}">
-				<label for="staff" class="col-md-3 col-xs-6 control-label">Staff: </label>
+				<label for="staff" class="col-md-3 control-label">Staff: </label>
 
-				<div class="col-md-9 col-xs-12">
+				<div class="col-md-9">
 		  		  <input type="text" ng-model="infraction_report.staffName" uib-typeahead="employee for employee in staffNames | filter:$viewValue | limitTo:8" class="form-control" name="staff" required>
 
 		  
@@ -16,9 +16,9 @@
 			</div>
 
 			<div class="form-group" ng-class="{'has-error': newInfraction.infraction.$dirty && newInfraction.infraction.$invalid || newInfraction.infraction.$invalid && newInfraction.$submitted}">
-				<label for="infraction" class="col-md-3 col-xs-6 control-label">Infraction: </label>
+				<label for="infraction" class="col-md-3 control-label">Infraction: </label>
 
-				<div class="col-md-9 col-xs-12">
+				<div class="col-md-9">
 					<select class="form-control" ng-model="infraction_report.infraction" name="infraction" required>
 						<option ng-repeat="infraction in infractions" ng-value="infraction">{{infraction}}</option>
 					</select>
@@ -27,9 +27,9 @@
 			</div>
 
 			<div class="form-group" ng-class="{'has-error': newInfraction.severity.$invalid && newInfraction.severity.$dirty || newInfraction.severity.$invalid && newInfraction.$submitted}">
-						<label for="severity" class="col-md-3 col-xs-6 control-label">Severity: </label>
+						<label for="severity" class="col-md-3 control-label">Severity: </label>
 
-						<div class="col-md-9 col-xs-12">
+						<div class="col-md-9">
 				  		  <input type="number" max="4" min="1" ng-model="new_infraction.severity" class="form-control" name="severity" required/>
 
 				  

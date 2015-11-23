@@ -1,7 +1,7 @@
 <!--Week overview-->
 <ul class="nav nav-tabs">
-  <li role="presentation" ng-class={"active":views.overview} ng-click="view('overview')"><a href="#">Overview</a></li>
   <li role="presentation" ng-class={"active":views.reports} ng-click="view('reports')"><a href="#">Reports</a></li>
+  <li role="presentation" ng-class={"active":views.overview} ng-click="view('overview')"><a href="#">Add</a></li>
   <li role="presentation" ng-class={"active":views.staff} ng-click="view('staff')"><a href="#">Staff</a></li>
   <li role="presentation" ng-class={"active":views.managers} ng-click="view('managers')"><a href="#">Managers</a></li>
 
@@ -76,7 +76,7 @@
 			</div>
 
 		<div class="panel-body">
-			<staff-details ng-repeat="manager in managers | filter: {name:mgmtName}" employee="manager" reports="reports" mgmt="true" class="col-md-6 col-sm-12"></staff-details>
+			<staff-details ng-repeat="manager in managers | filter: {name:mgmtName}" employee="manager" reports="reports" mgmt="true" class="col-md-6 col-sm-12."></staff-details>
 		</div>
 
 	</div>

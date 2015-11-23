@@ -5,16 +5,16 @@
 	<div class="panel-body">
 		<form class="form-horizontal" name="newIncident" ng-submit="newIncident.$valid && saveIncident()"  novalidate>
 			<div class="form-group" ng-if="edit">
-				<label class="col-md-3 col-xs-3 control-label">Manager: </label>
+				<label class="col-md-3 control-label">Manager: </label>
 
-				<div class="col-md-9 col-xs-12">
+				<div class="col-md-9 ">
 					{{report.managerName}}
 				</div>
 			</div>
 			<div class="form-group" ng-class="{'has-error': staffError ||  incident_report.staffNames.length === 0 && newIncident.$submitted }">
-				<label for="staff" class="col-md-3 col-xs-3 control-label">Staff: </label>
+				<label for="staff" class="col-md-3 control-label">Staff: </label>
 
-				<div class="col-md-9 col-xs-12">
+				<div class="col-md-9 ">
 				    <div class="input-group">
 				      <input type="text" class="form-control" placeholder="Search by name..." ng-model="selected" uib-typeahead="employee for employee in staffNames | filter:$viewValue | limitTo:8" class="form-control" >
 				      <span class="input-group-btn" >
@@ -26,15 +26,15 @@
 			</div>
 			<!-- create input group with add button, add employees to list below to send to db-->
 			<div class="form-group">
-				<label for="staff" class="col-md-3 col-xs-3 control-label"></label>
+				<label for="staff" class="col-md-3 control-label"></label>
 
-				<div class="col-md-9 col-xs-12">
+				<div class="col-md-9 ">
 					{{incident_report.staffNames.join(", ")}}
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="time" class="col-md-3 col-xs-3 control-label">Time: </label>
+				<label for="time" class="col-md-3 control-label">Time: </label>
 
 				<div class="col-xs-12 col-md-9">
 		            <div class="col-md-4 col-xs-4" ng-class="{'has-error': !now.hour}">
@@ -58,36 +58,36 @@
 
 
 			<div class="form-group" ng-class="{'has-error': newIncident.report.$dirty && newIncident.report.$invalid || newIncident.report.$invalid && newIncident.$submitted}">
-				<label for="report" class="col-md-3 col-xs-3 control-label">Report: </label>
+				<label for="report" class="col-md-3 control-label">Report: </label>
 				
-				<div class="col-md-9 col-xs-12">
+				<div class="col-md-9 ">
 
 					<textarea class="form-control" name="report" ng-model="incident_report.report" required></textarea>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="disciplinary" class="col-md-3 col-xs-3 control-label">Action: </label>
+				<label for="disciplinary" class="col-md-3 control-label">Action: </label>
 				
-				<div class="col-md-9 col-xs-12">
+				<div class="col-md-9">
 
 					<textarea class="form-control" name="disciplinary" ng-model="incident_report.disciplinary"></textarea>
 				</div>
 			</div>
 
 			<div class="form-group" ng-if="edit">
-				<label for="notes" class="col-md-3 col-xs-3 control-label">Notes: </label>
+				<label for="notes" class="col-md-3 control-label">Notes: </label>
 				
-				<div class="col-md-9 col-xs-12">
+				<div class="col-md-9">
 
 					<textarea class="form-control" name="notes" ng-model="incident_report.notes"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
 
-				<label for="cops" class="col-md-3 col-xs-3 control-label">Cops Called: </label>
+				<label for="cops" class="col-md-3 control-label">Cops Called: </label>
 
-				<div class="col-md-9 col-xs-7">
+				<div class="col-md-9 ">
 
 					<label class="radio-inline" >
 						<input type="radio" name="copsCalled" value="false" ng-model="incident_report.copsCalled" checked> No
