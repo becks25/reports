@@ -41,6 +41,9 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
               console.log('error?');
             });
           }
+
+          scope.dtstart = new Date('January 1, 2015');
+          scope.dtend = new Date();
         }
     };
 });

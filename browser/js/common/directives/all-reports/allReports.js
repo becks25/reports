@@ -23,6 +23,21 @@ app.directive('allReports', function () {
             No: true,
             Yes: true
           };
+
+          scope.dtstart = new Date('January 1, 2015');
+          scope.dtend = new Date();
+          scope.status={
+            start: false,
+            end: false
+          };
+
+          scope.open = (event, date) => {
+            scope.status[date] = !scope.status[date];
+          }
+
+
+
+
         }
     };
 });

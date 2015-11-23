@@ -8,7 +8,7 @@
 		<div class="col-sm-12">
 			<div class="col-sm-4 col-xs-6">
 				<p class="input-group">
-	              <input type="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="startDate.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+	              <input type="date" class="form-control" uib-datepicker-popup ng-model="dtstart" is-open="startDate.opened" close-text="Close" />
 	              <span class="input-group-btn">
 	                <button type="button" class="btn btn-default" ng-click="startDate.opened = !startDate.opened"><i class="glyphicon glyphicon-calendar"></i></button>
 	              </span>
@@ -18,7 +18,7 @@
 
 			<div class="col-sm-4 col-xs-6">
 	      		<p class="input-group">
-	              <input type="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="endDate.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+	              <input type="date" class="form-control" uib-datepicker-popup ng-model="dtend" is-open="endDate.opened" close-text="Close" />
 	              <span class="input-group-btn">
 	                <button type="button" class="btn btn-default" ng-click="endDate.opened = !endDate.opened"><i class="glyphicon glyphicon-calendar"></i></button>
 	              </span>

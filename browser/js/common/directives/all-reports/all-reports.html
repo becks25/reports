@@ -65,19 +65,30 @@
 			</div>
 		</div>
 
-		<!--date range filter-->
-		<div class="filter-category" ng-click="dateCollapsed = !dateCollapsed">Date Range</div>
-
-		<div >
-			<div class="filter-options">
-				dates
-			</div>
-		</div>
 
 	</div>
 
 	<div class="col-sm-10">
-		<report class="col-sm-4 col-xs-12" ng-repeat="report in reports | reportFilter: managers: staff: infractions: type: cops| orderBy: 'report.timestamp': true " report="report"></report>
+		<div class="col-sm-12">
+			<div class="col-md-6">
+	            <p class="input-group">
+	              <input type="date" class="form-control" uib-datepicker-popup ng-model="dtstart" is-open="status.start" ng-required="true" close-text="Close" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="open($event, 'start')"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	            </p>
+       		</div>
+
+       		<div class="col-md-6">
+	            <p class="input-group">
+	              <input type="date" class="form-control" uib-datepicker-popup ng-model="dtend" is-open="status.end" ng-required="true" close-text="Close" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="open($event, 'end')"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	            </p>
+       		</div>
+	    </div>
+		<report class="col-sm-4 col-xs-12" ng-repeat="report in reports | reportFilter: managers: staff: infractions: type: cops: dtstart : dtend| orderBy: 'report.timestamp': true " report="report"></report>
 	</div>
 
 </div>
