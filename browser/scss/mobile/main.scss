@@ -1,31 +1,35 @@
 @media screen and (max-width: 991px){
 	.input-group-btn, .form-control > *, input[type=text], ::-webkit-input-placeholder, select, option{
-		font-size:1.5em;
+		font-size:2em;
 		height: auto;
 		line-height:3;
 	}
 
+	body{
+		font-size:2em;
+		line-height:3;
+	}
 
 
 	p, label, button, .btn{
-		font-size:2em;
+		font-size:2.5em;
 		height:auto;
 	}
 
 	h4 {
-		font-size:2.5em;
+		font-size:3em;
 	}
 
 	h3 {
-		font-size: 3em;
-	}
-
-	h2{
 		font-size: 3.5em;
 	}
 
+	h2{
+		font-size: 4em;
+	}
+
 	h1 {
-		font-size:4em;
+		font-size:4.5em;
 	}
 }
 
