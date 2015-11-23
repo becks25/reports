@@ -2,14 +2,22 @@
     <div class="container">
         <div class="navbar-header">
         </div>
-        <ul class="nav navbar-nav">
+
+        <span class="glyphicon glyphicon-menu-hamburger navbar-toggler hidden-md" ng-click="menu=!menu" ng-init="menu=false"></span>
+        <ul class="nav navbar-nav visible-lg visible-md">
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>
+
+        <ul class="nav navbar-nav" ng-show="menu">
+            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+            </li>
+            <li class="hidden-md"><a ng-click="logout()">Logout</a></li>
+        </ul>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
+        <div ng-show="user" class="welcome visible-lg visible-md">
             <a ng-click="logout()">Logout</a>
         </div>
     </div>
