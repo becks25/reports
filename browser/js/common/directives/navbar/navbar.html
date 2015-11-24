@@ -14,11 +14,15 @@
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
+            <li class="hidden-md"><a ng-click="">Change Password</a></li>
             <li class="hidden-md"><a ng-click="logout()">Logout</a></li>
         </ul>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <div ng-show="user" class="welcome visible-lg visible-md">
-            <a ng-click="logout()">Logout</a>
+            <button class="btn btn-default" ng-click="resetPassword()">Reset Password</button>
+
+
+            <a ng-click="logout()" class="btn btn-default">Logout</a>
         </div>
     </div>
 </nav>

@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, Session) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, Session, $uibModal) {
 
     return {
         restrict: 'E',
@@ -36,6 +36,14 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
             var removeUser = function () {
                 scope.user = null;
             };
+
+            scope.resetPassword = function () {
+                console.log(scope.user);
+                var modalInstance = $uibModal.open({
+                  templateUrl: 'js/common/directives/reset-password/reset-password.html',
+                  controller: 'passwordCtrl'
+                });
+            }
 
             setUser();
 

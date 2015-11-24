@@ -55,6 +55,8 @@ router.put('/:userId', (req, res, next) => {
         res.sendStatus(401);
         return;
     }
+
+    console.log('req body:', req.body);
     _.assign(req.foundUser, req.body);
     req.foundUser.save()
     .then(user => res.status(200).send(user))

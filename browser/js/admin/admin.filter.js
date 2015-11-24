@@ -7,7 +7,6 @@ app.filter('reportFilter', function(){
             if(mgmt.checked) checkedManagers.push(mgmt.name);
         });
 
-        console.log(dtstart.getDate());
         var checkedStaff = [];
         staff.forEach(stf => {
             if(stf.checked) checkedStaff.push(stf.name);
@@ -38,11 +37,8 @@ app.filter('reportFilter', function(){
                     }else valid = false;
                 }
                 if(date.getFullYear() == dtend.getFullYear()) {
-                    console.log('same end year');
                     if(date.getMonth() <= dtend.getMonth()){
-                        console.log('right end range');
                         if(date.getMonth() ==dtend.getMonth()){
-                            console.log('same date end')
                             if(date.getDate() > dtend.getDate()) valid = false;
                         }
 
