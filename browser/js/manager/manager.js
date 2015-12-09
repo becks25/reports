@@ -59,10 +59,18 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
         return report.managerId == $scope.user._id;
     });
 
-    $scope.infraction_report = {
-        manager: $scope.user._id,
-        managerName: $scope.user.name
-    };
+    var reset_inf_report = () => {
+        $scope.infraction_report = {};
+        $scope.infraction_report = {
+            manager: $scope.user._id,
+            managerName: $scope.user.name
+        };
+
+    }
+
+    reset_inf_report();
+
+   
 
     $scope.saveInfraction = () => {
         console.log('save pressed');
@@ -78,21 +86,29 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
         .then(saved => {
             $scope.infractions.push(saved);
             $scope.newInfraction.$setPristine();
+            reset_inf_report();
 
             console.log('successfully saved');
-            $scope.$apply();
         });
 
 
     };
 
-    $scope.incident_report = {
-        manager: $scope.user._id,
-        managerName: $scope.user.name,
-        copsCalled: 'false',
-        staffNames: [],
-        staff: []
-    };
+    var reset_inc_report = () => {
+        $scope.incident_report = {};
+
+        $scope.incident_report = {
+            manager: $scope.user._id,
+            managerName: $scope.user.name,
+            copsCalled: 'false',
+            staffNames: [],
+            staff: []
+        };
+    }
+
+    reset_inc_report();
+
+    
 
     $scope.staffError = false;
     $scope.saveIncident = () => {
@@ -117,18 +133,13 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
 
         IncidentReportFactory.create($scope.incident_report)
         .then(saved => {
-            $scope.incident_report = {
-                manager: $scope.user._id,
-                managerName: $scope.user.name,
-                copsCalled: 'false',
-                staffNames: [],
-                staff: []
-            }; 
             
             $scope.infractions.push(saved);
             $scope.newIncident.$setPristine();
+
             console.log('successfully saved');
-            $scope.$digest();
+
+            reset_inc_report();
         });
     };
 
