@@ -11,10 +11,13 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
                 console.log('success!', user);
                 scope.new_manager = {};
                 scope.newManager.$setPristine();
+
             }).catch(() => {
               console.log('error?');
             });
           };
+
+          console.log(scope.staff);
 
           scope.new_staff = {};
 
@@ -24,6 +27,8 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
               console.log('success!', employee);
               scope.new_staff = {};
               scope.newStaff.$setPristine();
+              console.log(scope.staff);
+              scope.staff.push(employee);
             }).catch(() => {
               console.log('error?');
             });

@@ -31,6 +31,10 @@ app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staf
     $scope.managerCollapsed = true;
 
     $scope.staffNumbers = {};
+    $scope.staff.forEach(staf => {
+        $scope.staffNumbers[staf.name] = 0;
+    });
+
     $scope.reports.forEach(report => {
         var staff = [];
 
@@ -41,13 +45,10 @@ app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staf
         }
 
         staff.forEach(staf => {
-            if(!$scope.staffNumbers[staf]) $scope.staffNumbers[staf] = 0;
             $scope.staffNumbers[staf]++;
         });
 
     });
-
-    console.log($scope.staffNumbers);
 
 
     $scope.views= {
@@ -61,7 +62,6 @@ app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staf
         for(var key in $scope.views){
             $scope.views[key] = false;
         };
-        console.log(tab);
 
         $scope.views[tab]=true;
     };

@@ -89,6 +89,7 @@ app.filter('staffFilter', function() {
                     names.push(key);
                 }
             }
+
         };
 
         staff.forEach(employee => {
