@@ -69,13 +69,20 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
 
     }
 
+    $scope.disable_sug_btn = false;
+    $scope.sug_success = false;
+
     reset_suggestions();
 
     $scope.saveSuggestion = () => {
+        $scope.disable_sug_btn = true;
+
         SuggestionsFactory.create($scope.suggestions)
         .then(saved => {
           console.log('success');
           reset_suggestions();
+          $scope.disable_sug_btn = false;
+          $scope.sug_success = true;
         });
       }
 
@@ -89,10 +96,12 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
     }
 
     reset_inf_report();
-
+    $scope.disable_inf_btn = false;
+    $scope.inf_success = false;
    
 
     $scope.saveInfraction = () => {
+        $scope.disable_inf_btn = true;
         console.log('save pressed');
         
         //Add staff id number to obj
@@ -107,8 +116,9 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
             $scope.infractions.push(saved);
             $scope.newInfraction.$setPristine();
             reset_inf_report();
-
+            $scope.disable_inf_btn = false;
             console.log('successfully saved');
+            $scope.inf_success=true;
         });
 
 
@@ -129,10 +139,15 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
     reset_inc_report();
 
     
+    $scope.disable_inc_btn = false;
+    $scope.inc_success = false;
 
     $scope.staffError = false;
     $scope.saveIncident = () => {
         //add staff ids
+        $scope.disable_inc_btn = true;
+        $scope.inc_success=false;
+
         if($scope.incident_report.staffNames.length === 0){
             $scope.staffError = true;
             return;
@@ -160,6 +175,9 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
             console.log('successfully saved');
 
             reset_inc_report();
+            $scope.disable_inc_btn = false;
+            $scope.inc_success=true;
+
         });
     };
 
