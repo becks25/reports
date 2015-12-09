@@ -14,12 +14,16 @@ app.config(function ($stateProvider) {
                         var infractionArr = [];
 
                         infractions.forEach(infraction => {
-                            infractionArr.push(infraction.name);
+                            var newObj = {
+                                name: infraction.name,
+                                checked: true
+                            }
+                            infractionArr.push(newObj);
                         });
 
                         return infractionArr;
                     })
-            },
+            }
             reports: (IncidentReportFactory, InfractionReportFactory) => {
                 return IncidentReportFactory.findAll()
                     .then(incidents => {
