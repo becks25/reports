@@ -33,6 +33,9 @@ app.config(function ($stateProvider) {
             },
             infractionReports: (InfractionReportFactory) => {
                 return InfractionReportFactory.findAll();
+            },
+            suggestions: (SuggestionsFactory) => {
+                return SuggestionsFactory.findAll();
             }
         }
     });

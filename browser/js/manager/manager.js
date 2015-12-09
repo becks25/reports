@@ -45,7 +45,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, staff, infractions, reports, InfractionReportFactory, IncidentReportFactory) {
+app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, staff, infractions, reports, InfractionReportFactory, IncidentReportFactory, SuggestionsFactory) {
     $scope.user = Session.user;
     $scope.staff = staff;
     $scope.infractions = infractions;
@@ -58,6 +58,26 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
     $scope.reports = reports.filter(report => {
         return report.managerId == $scope.user._id;
     });
+
+    var reset_suggestions = () => {
+        $scope.suggestions  = {};
+
+        $scope.suggestions = {
+            manager: $scope.user._id,
+            managerName: $scope.user.name
+        };
+
+    }
+
+    reset_suggestions();
+
+    $scope.saveSuggestion = () => {
+        SuggestionsFactory.create($scope.suggestions)
+        .then(saved => {
+          console.log('success');
+          reset_suggestions();
+        });
+      }
 
     var reset_inf_report = () => {
         $scope.infraction_report = {};

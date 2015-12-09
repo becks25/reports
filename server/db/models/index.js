@@ -6,3 +6,4 @@ require('./staff');
 require('./infraction');
 require('./infraction_report');
 require('./incident');
+require('./suggestions');

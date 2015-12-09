@@ -1,0 +1,28 @@
+<div class="submit-report">
+	<div class="panel-heading blue-header">
+		<h3>Submit an Suggestion or Comment</h3>
+	</div>
+
+	<div class="panel-body">
+		<form class="form-horizontal" name="newSuggestion" ng-submit="newSuggestion.$valid && saveSuggestion()" novalidate>
+			
+		
+
+			<div class="form-group" ng-class="{'has-error': newSuggestion.suggestion.$dirty && newSuggestion.suggestion.$invalid || newSuggestion.suggestion.$invalid && newSuggestion.$submitted}">
+				<label for="suggestion" class="col-md-3 control-label">Suggestion: </label>
+				
+				<div class="col-md-9">
+
+					<textarea class="form-control" name="suggestion" ng-model="suggestions.comment" required></textarea>
+				</div>
+			</div>
+
+
+			<div class="col-md-9 col-md-offset-3 col-xs-12">
+				<button type="submit" class="btn btn-default btn-block">Submit Report</button>
+			</div>
+
+		</form>
+	</div>
+
+</div>
