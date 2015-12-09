@@ -4,6 +4,7 @@
   <li role="presentation" ng-class={"active":views.overview} ng-click="view('overview')"><a href="#">Add</a></li>
   <li role="presentation" ng-class={"active":views.staff} ng-click="view('staff')"><a href="#">Staff</a></li>
   <li role="presentation" ng-class={"active":views.managers} ng-click="view('managers')"><a href="#">Managers</a></li>
+  <li role="presentation" ng-class={"active":views.suggestions} ng-click="view('suggestions')"><a href="#">Suggestions</a></li>
 
 </ul>
 <div class="col-sm-12">
@@ -80,6 +81,50 @@
 		</div>
 
 	</div>
+
+	<div ng-if="views.suggestions">
+		<div class="panel-heading blue-header">
+			<h3> 
+				Suggestions/Comments
+			</h3>
+		</div>
+
+		<div class="panel-body">
+			<div class="col-sm-12">
+
+				<div class="col-md-6 col-sm-12">
+				    <div class="input-group">
+				      <input type="text" class="form-control" placeholder="Search suggestions..." ng-model="commentSearch">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button">Search</button>
+				      </span>
+				    </div>
+				</div>
+
+				<div class="col-md-6 col-sm-12">
+				    <div class="input-group">
+				      <input type="text" class="form-control" placeholder="Search managers..." ng-model="mgmtSearch">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button">Search</button>
+				      </span>
+				    </div>
+				</div>
+			</div>
+
+
+	   	</div>
+
+		<div class="panel-body">
+			<div ng-repeat="suggestion in suggestions | filter:{managerName:mgmtSearch, comment:commentSearch} track by $index" class="panel-body" ng-class="{'gray-header':$even}">
+				<p><b>Manager:</b> {{suggestion.managerName}}</p>
+				<p><b>Comment:</b> {{suggestion.comment}}</p>
+			</div>
+			
+		</div>
+
+	</div>
+
+
 	<div class="footer"></div>
 </div>
 

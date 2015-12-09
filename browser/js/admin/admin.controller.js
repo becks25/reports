@@ -1,5 +1,5 @@
-app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staff, infractions, mgmt, incidentReports, infractionReports) {
-
+app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staff, infractions, mgmt, incidentReports, infractionReports, suggestions) {
+    $scope.suggestions = suggestions;
     $scope.infractionReports = infractionReports;
     $scope.incidentReports = incidentReports;
     $scope.staff = staff;
@@ -55,7 +55,8 @@ app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staf
         staff: false,
         managers: false,
         reports: true,
-        overview: false
+        overview: false,
+        suggestions: false
     }
 
     $scope.view = (tab) => {
