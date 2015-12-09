@@ -7,8 +7,6 @@ app.directive('infraction', function (InfractionsFactory) {
         },
         link: (scope, elem, attr) => {
           scope.remove = () => {
-            console.log('removing');
-
             InfractionsFactory.destroy(scope.inf)
               .then(deleted => {
                 console.log('success');
@@ -20,7 +18,7 @@ app.directive('infraction', function (InfractionsFactory) {
           scope.save_edit = () => {
             InfractionsFactory.update(scope.inf._id, {name: scope.inf.name})
             .then(saved => {
-              console.log('success', saved);
+              console.log('success');
               scope.edit = false;
             });
           }

@@ -13,7 +13,7 @@ app.controller('passwordCtrl', function($scope, $uibModalInstance, UserFactory, 
       $scope.user.something = $scope.password;
       UserFactory.update($scope.user._id, {password: $scope.password})
       .then(saved => {
-        console.log('success', saved);
+        console.log('success');
         $scope.close();
       });
     };

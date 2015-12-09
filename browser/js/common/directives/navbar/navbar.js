@@ -38,7 +38,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
             };
 
             scope.resetPassword = function () {
-                console.log(scope.user);
                 var modalInstance = $uibModal.open({
                   templateUrl: 'js/common/directives/reset-password/reset-password.html',
                   controller: 'passwordCtrl'

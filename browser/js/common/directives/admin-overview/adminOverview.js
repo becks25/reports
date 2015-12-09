@@ -8,7 +8,7 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
           scope.saveManager = () => {
             UserFactory.create(scope.new_manager)
             .then(user => {
-                console.log('success!', user);
+                console.log('success!');
                 scope.new_manager = {};
                 scope.newManager.$setPristine();
 
@@ -17,14 +17,13 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
             });
           };
 
-          console.log(scope.staff);
 
           scope.new_staff = {};
 
           scope.saveStaff = () => {
             StaffFactory.create(scope.new_staff)
             .then(employee => {
-              console.log('success!', employee);
+              console.log('success!');
               scope.new_staff = {};
               scope.newStaff.$setPristine();
               console.log(scope.staff);
@@ -39,7 +38,7 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
           scope.saveInfraction = () => {
             InfractionsFactory.create(scope.new_infraction)
             .then(inf => {
-              console.log('success!', inf);
+              console.log('success!');
               scope.new_infraction = {};
               scope.newInfraction.$setPristine();
             }).catch(() => {

@@ -24,7 +24,7 @@ app.controller('modalCtrl', function($scope, $uibModalInstance, IncidentReportFa
                   console.log('saving incident');
                   IncidentReportFactory.save($scope.incident_report)
                   .then(saved => {
-                    console.log('success', saved);
+                    console.log('success');
                     $scope.close();
                   });
                 };
