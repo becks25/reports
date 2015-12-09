@@ -20,7 +20,7 @@
 
 				<div class="col-md-9">
 					<select class="form-control" ng-model="infraction_report.infraction" name="infraction" required>
-						<option ng-repeat="infraction in infractions" ng-value="infraction">{{infraction}}</option>
+						<option ng-repeat="infraction in infractions track by $index" ng-value="infraction">{{infraction }}</option>
 					</select>
 
 				</div>
