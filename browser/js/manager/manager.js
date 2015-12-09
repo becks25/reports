@@ -11,19 +11,16 @@ app.config(function ($stateProvider) {
             infractions: (InfractionsFactory) => {
                 return InfractionsFactory.findAll()
                     .then(infractions => {
+                        console.log(infractions);
                         var infractionArr = [];
 
                         infractions.forEach(infraction => {
-                            var newObj = {
-                                name: infraction.name,
-                                checked: true
-                            }
-                            infractionArr.push(newObj);
+                            infractionArr.push(infraction.name);
                         });
-
+                        console.log(infractionArr);
                         return infractionArr;
                     })
-            }
+            },
             reports: (IncidentReportFactory, InfractionReportFactory) => {
                 return IncidentReportFactory.findAll()
                     .then(incidents => {

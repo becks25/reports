@@ -19,7 +19,8 @@ app.config(function ($stateProvider) {
                         infractions.forEach(infraction => {
                             var newObj = {
                                 name: infraction.name,
-                                checked: true
+                                checked: true,
+                                _id: infraction._id
                             }
                             infractionArr.push(newObj);
                         });
