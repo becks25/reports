@@ -164,6 +164,7 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
                 $scope.disable_inf_btn = false;
                 console.log('successfully saved');
                 $scope.inf_success=true;
+                $state.go($state.current, {}, {reload: true});
             });
     };
 
