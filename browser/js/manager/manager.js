@@ -189,13 +189,15 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
     $scope.staffError = false;
     $scope.saveIncident = () => {
         //add staff ids
-        $scope.disable_inc_btn = true;
         $scope.inc_success=false;
 
         if($scope.incident_report.staffNames.length === 0){
             $scope.staffError = true;
             return;
         }
+
+        $scope.disable_inc_btn = true;
+
         $scope.staff.forEach(employee => {
             if($scope.incident_report.staffNames.indexOf(employee.name) !== -1) $scope.incident_report.staff.push(employee._id);
         });
@@ -204,6 +206,10 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
         $scope.currentTime.setMinutes($scope.now.minute);
         if($scope.now.m === 'PM' && $scope.now.hour > 12) $scope.now.hour += 12;
         $scope.currentTime.setHours($scope.now.hour);
+
+        //set date
+        $scope.currentTime.setFullYear($scope.day.getFullYear(), $scope.day.getMonth(), $scope.day.getDate());
+        
         $scope.incident_report.time = $scope.currentTime;
 
         //save copsCalled boolean in right format
@@ -216,7 +222,7 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
             $scope.infractions.push(saved);
             $scope.newIncident.$setPristine();
 
-            console.log('successfully saved');
+            console.log('successfully saved', saved);
 
             reset_inc_report();
             $scope.disable_inc_btn = false;
@@ -233,6 +239,7 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
         $scope.status.opened = true;
     };
 
+    $scope.day = new Date();
     $scope.currentTime = new Date(Date.now());
     $scope.now = {
         hour: $scope.currentTime.getHours(),
