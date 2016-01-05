@@ -8,3 +8,8 @@
 .reports_half{
 	border-left:1px solid $gray;
 }
+
+.infraction_options{
+	max-height: 125px;
+    overflow-y: auto;
+}

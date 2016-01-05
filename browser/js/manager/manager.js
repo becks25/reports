@@ -14,11 +14,13 @@ app.config(function ($stateProvider) {
             infractions: (InfractionsFactory) => {
                 return InfractionsFactory.findAll()
                     .then(infractions => {
-                        console.log(infractions);
                         var infractionArr = [];
 
                         infractions.forEach(infraction => {
-                            infractionArr.push(infraction.name);
+                            infractionArr.push({
+                                name: infraction.name,
+                                checked: false
+                            });
                         });
                         console.log(infractionArr);
                         return infractionArr;
@@ -48,7 +50,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, staff, infractions, reports, InfractionReportFactory, IncidentReportFactory, SuggestionsFactory) {
+app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, staff, infractions, reports, InfractionReportFactory, IncidentReportFactory, SuggestionsFactory, $q) {
     $scope.user = Session.user;
     $scope.staff = staff;
     $scope.infractions = infractions;
@@ -95,15 +97,30 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
             manager: $scope.user._id,
             managerName: $scope.user.name
         };
+        $scope.infractions.forEach(inf => {
+            inf.checked = false;
+        });
 
     }
 
     reset_inf_report();
     $scope.disable_inf_btn = false;
     $scope.inf_success = false;
-   
+    $scope.no_inf = false;
 
     $scope.saveInfraction = () => {
+
+        var checked_inf = [];
+
+        $scope.infractions.forEach(inf => {
+            if(inf.checked) checked_inf.push(inf.name);
+        });
+
+        if(checked_inf.length == 0){
+            $scope.no_inf = true;
+            return;
+        }
+
         $scope.disable_inf_btn = true;
         console.log('save pressed');
         
@@ -114,17 +131,40 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
             }
         });
 
-        InfractionReportFactory.create($scope.infraction_report)
-        .then(saved => {
-            $scope.infractions.push(saved);
-            $scope.newInfraction.$setPristine();
-            reset_inf_report();
-            $scope.disable_inf_btn = false;
-            console.log('successfully saved');
-            $scope.inf_success=true;
+
+        var promised_inf = [];
+        checked_inf.forEach(inf => {
+            var infraction = {
+                manager: $scope.infraction_report.manager,
+                managerName: $scope.infraction_report.managerName,
+                staffName: $scope.infraction_report.staffName,
+                staff: $scope.infraction_report.staff,
+                infraction: inf
+            }
+           // $scope.infraction_report.infraction = inf;
+
+            promised_inf.push(InfractionReportFactory.create(infraction));
+        // InfractionReportFactory.create($scope.infraction_report)
+        // .then(saved => {
+        //     $scope.infractions.push(saved);
+        //     $scope.newInfraction.$setPristine();
+        //     reset_inf_report();
+        //     $scope.disable_inf_btn = false;
+        //     console.log('successfully saved');
+        //     $scope.inf_success=true;
+        // });
+
         });
 
-
+        $q.all(promised_inf)
+            .then(saved => {
+                console.log(saved);
+                $scope.newInfraction.$setPristine();
+                reset_inf_report();
+                $scope.disable_inf_btn = false;
+                console.log('successfully saved');
+                $scope.inf_success=true;
+            });
     };
 
     var reset_inc_report = () => {

@@ -15,13 +15,19 @@
 				</div>
 			</div>
 
-			<div class="form-group" ng-class="{'has-error': newInfraction.infraction.$dirty && newInfraction.infraction.$invalid || newInfraction.infraction.$invalid && newInfraction.$submitted}">
+			<div class="form-group" ng-class="{'has-error': no_inf}">
 				<label for="infraction" class="col-md-3 control-label">Infraction: </label>
 
-				<div class="col-md-9">
-					<select class="form-control" ng-model="infraction_report.infraction" name="infraction" required>
+				<div class="col-md-9 infraction_options">
+					<!-- <select class="form-control" ng-model="infraction_report.infraction" name="infraction" required>
 						<option ng-repeat="infraction in infractions track by $index" ng-value="infraction">{{infraction }}</option>
-					</select>
+					</select> -->
+
+
+					<p ng-repeat="infraction in infractions" >
+						<input type="checkbox" value="infraction.name" checked="infraction.checked" ng-model="infractions[$index].checked">
+					 {{infraction.name}}
+					</p>
 
 				</div>
 			</div>
