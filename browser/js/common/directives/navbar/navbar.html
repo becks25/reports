@@ -11,7 +11,7 @@
         </ul>
 
         <ul class="nav navbar-nav" ng-show="menu">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn() && user.isAdmin">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
             <li class="hidden-md"><a ng-click="resetPassword()">Change Password</a></li>

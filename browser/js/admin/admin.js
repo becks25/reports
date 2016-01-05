@@ -3,6 +3,9 @@ app.config(function ($stateProvider) {
     $stateProvider.state('admin', {
         url: '/admin',
         templateUrl: 'js/admin/admin.html',
+        data:{
+            authenticate:true
+        },
         controller: 'AdminCtrl',
         resolve: {
             staff: (StaffFactory) => {
