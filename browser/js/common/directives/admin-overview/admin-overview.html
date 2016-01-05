@@ -1,164 +1,17 @@
 	<div class="panel-heading clearfix blue-header">
-		<h3>Add Employees</h3>
+		<h3>Overview</h3>
 		
 	</div>
 
-	<div class="panel-body clearfix">
+	<div class="panel-body">
+		<!--timespan picker-->
+		<p>Time</p>
 
-		<!-- <div class="col-sm-12">
-			<div class="col-sm-4 col-xs-6">
-				<p class="input-group">
-	              <input type="date" class="form-control" uib-datepicker-popup ng-model="dtstart" is-open="startDate.opened" close-text="Close" />
-	              <span class="input-group-btn">
-	                <button type="button" class="btn btn-default" ng-click="startDate.opened = !startDate.opened"><i class="glyphicon glyphicon-calendar"></i></button>
-	              </span>
-	            </p>      
+		<p>Download data</p>
+		<p>Infractions</p>
 
-			</div>
-
-			<div class="col-sm-4 col-xs-6">
-	      		<p class="input-group">
-	              <input type="date" class="form-control" uib-datepicker-popup ng-model="dtend" is-open="endDate.opened" close-text="Close" />
-	              <span class="input-group-btn">
-	                <button type="button" class="btn btn-default" ng-click="endDate.opened = !endDate.opened"><i class="glyphicon glyphicon-calendar"></i></button>
-	              </span>
-	            </p>
-			</div>
-
-
-			<div class="col-sm-4 col-xs-6">
-				<button class="btn btn-default">Update</button>
-			</div>
-
-		</div>
-
-		<div class="col-sm-12">
-			<p>
-				<b># of Infractions: </b> {{infractionReports.length}}
-			</p>
-
-			<p>
-				<b># of Incidents: </b> {{incidentReports.length}}
-			</p>
-
-			<p>
-				<b>Staff with multiple: </b> 
-			</p>
-		</div> -->
-
+		<p>Employees</p>
 	</div>
 
-	<div class="panel-body clearfix">
-		<div class="col-md-4 col-sm-12">
-			<div class="panel-heading gray-header">
-				<h5>Add New Manager</h5>
-			</div>
-			<div class="panel-body gray-outline">
-				<form class="form-horizontal" name="newManager" ng-submit="newManager.$valid && saveManager()" novalidate>
-					<div class="form-group" ng-class="{'has-error': newManager.name.$dirty && newManager.name.$invalid || newManager.name.$invalid && newManager.$submitted}">
-						<label for="name" class="col-sm-3 col-xs-5 control-label">Name: </label>
-
-						<div class="col-sm-9 col-xs-12">
-				  		  <input type="text" ng-model="new_manager.name" class="form-control" name="name" required>
-
-				  
-						</div>
-					</div>
-
-					<div class="form-group" ng-class="{'has-error': newManager.username.$dirty && newManager.username.$invalid || newManager.username.$invalid && newManager.$submitted}">
-						<label for="username" class="col-sm-3 col-xs-5 control-label">Username: </label>
-
-						<div class="col-sm-9 col-xs-12">
-							<input type="text" ng-model="new_manager.username" class="form-control" name="username" required>
-
-						</div>
-					</div>
-
-					<div class="form-group" ng-class="{'has-error': newManager.password.$dirty && newManager.password.$invalid || newManager.password.$invalid && newManager.$submitted}">
-						<label for="password" class="col-sm-3 col-xs-5 control-label">Password: </label>
-
-						<div class="col-sm-9 col-xs-12">
-							<input type="text" ng-model="new_manager.password" class="form-control" name="password" required>
-
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-6 col-xs-6">
-
-							<input type="checkbox" ng-model="new_manager.isAdmin" name="isAdmin">
-							Admin
-						</label>
-						<label class="col-sm-6 col-xs-6 ">
-
-							<input type="checkbox" ng-model="new_manager.superAdmin" name="superAdmin">
-							Super Admin
-						</label>
-					</div>
-
-
-					<div class="col-sm-9 col-sm-offset-3 col-xs-12">
-						<button type="submit" class="btn btn-default btn-block blue">Save</button>
-					</div>
-
-				</form>
-			</div>
-		</div>
-
-		<div class="col-md-4 col-sm-12">
-			<div class="panel-heading gray-header">
-				<h5>Add New Staff</h5>
-			</div>
-			<div class="panel-body gray-outline">
-				<form class="form-horizontal" name="newStaff" ng-submit="newStaff.$valid && saveStaff()" novalidate>
-					<div class="form-group" ng-class="{'has-error': newStaff.name.$dirty && newStaff.name.$invalid || newStaff.name.$invalid && newStaff.$submitted}">
-						<label for="name" class="col-sm-3 col-xs-5 control-label">Name: </label>
-
-						<div class="col-sm-9 col-xs-12">
-				  		  <input type="text" ng-model="new_staff.name" class="form-control" name="name" required>
-
-				  
-						</div>
-					</div>
-
-
-					<div class="col-sm-9 col-sm-offset-3 col-xs-12">
-						<button type="submit" class="btn btn-default btn-block blue">Save</button>
-					</div>
-
-				</form>
-
-
-			</div>
-		</div>
-
-		<div class="col-md-4 col-sm-12">
-			<div class="panel-heading gray-header">
-				<h5>Add New Infraction</h5>
-			</div>
-
-			<div class="panel-body gray-outline">
-				<form class="form-horizontal" name="newInfraction" ng-submit="newInfraction.$valid && saveInfraction()" novalidate>
-					<div class="form-group" ng-class="{'has-error': newInfraction.name.$dirty && newInfraction.name.$invalid || newInfraction.name.$invalid && newInfraction.$submitted}">
-						<label for="name" class="col-sm-3 col-xs-5 control-label">Name: </label>
-
-						<div class="col-sm-9 col-xs-12">
-				  		  <input type="text" ng-model="new_infraction.name" class="form-control" name="name" required>
-
-				  
-						</div>
-					</div>
-
-
-					<div class="col-sm-9 col-sm-offset-3 col-xs-12">
-						<button type="submit" class="btn btn-default blue btn-block">Save</button>
-					</div>
-
-					<h6>All infractions</h6>
-					<infraction ng-repeat="inf in infractions" inf="inf">{{inf.name}}</infraction>
-				</form>
-			</div>
-		</div>
 
 		
-	</div>

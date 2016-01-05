@@ -54,9 +54,10 @@ app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staf
     $scope.views= {
         staff: false,
         managers: false,
-        reports: true,
-        overview: false,
-        suggestions: false
+        reports: false,
+        overview: true,
+        suggestions: false,
+        add: false
     }
 
     $scope.view = (tab) => {

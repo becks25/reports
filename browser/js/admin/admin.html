@@ -1,14 +1,17 @@
 <!--Week overview-->
 <ul class="nav nav-tabs">
+  <li role="presentation" ng-class={"active":views.overview} ng-click="view('overview')"><a href="#">Overview</a></li>
   <li role="presentation" ng-class={"active":views.reports} ng-click="view('reports')"><a href="#">Reports</a></li>
-  <li role="presentation" ng-class={"active":views.overview} ng-click="view('overview')"><a href="#">Add</a></li>
+  <li role="presentation" ng-class={"active":views.add} ng-click="view('add')"><a href="#">Add</a></li>
   <li role="presentation" ng-class={"active":views.staff} ng-click="view('staff')"><a href="#">Staff</a></li>
   <li role="presentation" ng-class={"active":views.managers} ng-click="view('managers')"><a href="#">Managers</a></li>
   <li role="presentation" ng-class={"active":views.suggestions} ng-click="view('suggestions')"><a href="#">Suggestions</a></li>
 
 </ul>
 <div class="col-sm-12">
-	<admin-overview ng-if="views.overview"></admin-overview>
+	<admin-overview ng-if="views.overview" infractionreports="infractionReports" incidents="incidentReports" infractions="infractions" staff="staff"></admin-overview>
+
+	<add ng-if="views.add"></add>
 
 	<all-reports ng-if="views.reports" reports="reports" managers="managers" staff="staff" infractions="infractions"></all-reports>
 

@@ -2,52 +2,41 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/admin-overview/admin-overview.html',
+        scope:{
+          'infractionreports': '=',
+          'incidents': '=',
+          'infractions': '=',
+          'staff': '='
+        },
         link: (scope, elem, attr) => {
-          scope.new_manager = {};
+          /**INFRACTIONS
+            -group all reports by infraction type
+            -find mean & stdev of each group
+          **/
 
-          scope.saveManager = () => {
-            UserFactory.create(scope.new_manager)
-            .then(user => {
-                console.log('success!');
-                scope.new_manager = {};
-                scope.newManager.$setPristine();
+          var grouped = _.groupBy(scope.infractionreports, (obj) => {
+            return obj.infraction;
+          });
 
-            }).catch(() => {
-              console.log('error?');
+          var numStaff = scope.staff.length;
+
+          scope.infractions.map(inf => {
+            var temp = grouped[inf.name].length/numStaff;
+            inf.ave = temp;
+          });
+
+          //group by staff, group by inf
+          for(var inf in grouped){
+            var byStaff = _.groupBy(grouped[inf], (obj) => {
+              return obj.staffId;
             });
-          };
 
-
-          scope.new_staff = {};
-
-          scope.saveStaff = () => {
-            StaffFactory.create(scope.new_staff)
-            .then(employee => {
-              console.log('success!');
-              scope.new_staff = {};
-              scope.newStaff.$setPristine();
-              console.log(scope.staff);
-              scope.staff.push(employee);
-            }).catch(() => {
-              console.log('error?');
-            });
+            //stdev of each (sum of length of each-ave/total)
+            console.log(byStaff);
           }
+          
 
-          scope.new_infraction = {};
 
-          scope.saveInfraction = () => {
-            InfractionsFactory.create(scope.new_infraction)
-            .then(inf => {
-              console.log('success!');
-              scope.new_infraction = {};
-              scope.newInfraction.$setPristine();
-            }).catch(() => {
-              console.log('error?');
-            });
-          }
-
-          scope.dtstart = new Date('January 1, 2015');
-          scope.dtend = new Date();
         }
     };
 });
