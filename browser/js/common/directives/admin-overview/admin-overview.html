@@ -9,10 +9,57 @@
 
 		<p>Download data</p>
 		<p>Infractions</p>
-			<p ng-repeat="inf in infractions">
-				<b>{{inf.name}}:</b>
-				{{inf.ave}}, +/- {{inf.stdev}}
-			</p>
+			<div ng-repeat="inf in infractions">
+				<div class="col-sm-4 col-xs-12">
+					<b>{{inf.name}}:</b>
+				</div>
+
+				<!--ave shown as progbar-->
+				<div class="col-sm-8 col-xs-12">
+					<div class="progress">
+						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="{{maxInf.ave}}" ng-style="{'width': '{{(inf.ave/maxInf.ave) * 100}}%'}">
+							<span><b>{{inf.ave}}</b>, +/- {{inf.stdev}}</span>
+						</div>
+					</div>
+
+				</div>
+
+				<!--details for inf-->
+				<div class="col-xs-12 panel-body">
+					<p>
+						<b>Total #:</b> {{inf.num}}
+					
+					</p>
+
+				
+					<div class="panel-body">
+						<table>
+							<tr>
+								<th>
+									Employee
+								</th>
+
+								<th>
+									Number of offenses
+								</th>
+							</tr>
+
+							<tr ng-repeat="empl in inf.badEmp | orderBy:'-num' | limitTo:10">
+								<td class="col-sm-6">
+									{{empl.name}}
+								</td>
+
+								<td class="col-sm-6">
+									{{empl.num}}
+								</td>
+							</tr>
+						</table>
+
+					</div>
+				</div>
+
+			</div>
+
 
 		<p>Employees</p>
 	</div>

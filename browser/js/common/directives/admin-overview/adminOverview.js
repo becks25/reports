@@ -6,7 +6,8 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
           'infractionreports': '=',
           'incidents': '=',
           'infractions': '=',
-          'staff': '='
+          'staff': '=',
+          'allreports': '='
         },
         link: (scope, elem, attr) => {
           /**INFRACTIONS
@@ -28,9 +29,22 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
             });
 
             var nums = [];
+            var badEmp = [];
+
             for(staf in tempGrouped){
               nums.push(tempGrouped[staf].length);
+              tempGrouped[staf].num = tempGrouped[staf].length;
+              if(tempGrouped[staf].length> temp){
+                badEmp.push({
+                  name: tempGrouped[staf][0].staffName,
+                  num: tempGrouped[staf].length,
+                  id: staf
+                });
+              }
             }
+
+
+            tempGrouped = _.sortBy()
 
             var stdev = 0;
 
@@ -51,7 +65,13 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
             inf.ave = temp;
             inf.min = _.min(nums);
             inf.max = _.max(nums);
+            inf.num = nums.length;
             inf.stdev = stdev;
+            inf.badEmp = badEmp;
+          });
+
+          scope.maxInf = _.max(scope.infractions, (inf)=>{
+              return inf.ave;
           });
 
           //group by staff, group by inf
@@ -65,11 +85,12 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
                 return obj.infraction;
               });
             }
-
-
             //stdev of each (sum of length of each-ave/total)
             //console.log('infs', infByStaff);
           }
+          
+
+          //Create downloadable version of data
           
 
 
