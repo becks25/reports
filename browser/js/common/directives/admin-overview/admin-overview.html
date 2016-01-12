@@ -9,6 +9,10 @@
 
 		<p>Download data</p>
 		<p>Infractions</p>
+			<p ng-repeat="inf in infractions">
+				<b>{{inf.name}}:</b>
+				{{inf.ave}}, +/- {{inf.stdev}}
+			</p>
 
 		<p>Employees</p>
 	</div>
