@@ -32,6 +32,7 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
             var badEmp = [];
 
             for(staf in tempGrouped){
+              console.log(tempGrouped[staf]);
               nums.push(tempGrouped[staf].length);
               tempGrouped[staf].num = tempGrouped[staf].length;
               if(tempGrouped[staf].length> temp){
