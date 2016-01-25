@@ -22,6 +22,7 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
           var numInfs = scope.infractionreports.length;
 
           scope.infractions.map(inf => {
+            if(!grouped[inf.name]) return;
             var temp = grouped[inf.name].length/numInfs;
             
             var tempGrouped = _.groupBy(grouped[inf.name], (obj) => {
