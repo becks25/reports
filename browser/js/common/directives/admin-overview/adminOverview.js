@@ -29,12 +29,14 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
               return obj.staffId;
             });
 
+
             var nums = [];
             var badEmp = [];
+            var average = 0;
 
             for(staf in tempGrouped){
-              console.log(tempGrouped[staf]);
               nums.push(tempGrouped[staf].length);
+              average+= tempGrouped[staf].length;
               tempGrouped[staf].num = tempGrouped[staf].length;
               if(tempGrouped[staf].length> temp){
                 badEmp.push({
@@ -44,7 +46,7 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
                 });
               }
             }
-
+            average = average/nums.length;
 
             tempGrouped = _.sortBy()
 
@@ -64,16 +66,17 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
 
             stdev = stdev/numInfs;
 
-            inf.ave = temp * 100;
+            inf.percent = Math.round(temp * 10000)/100;
+            inf.ave = Math.round(average * 100)/100;
             inf.min = _.min(nums);
             inf.max = _.max(nums);
             inf.num = nums.length;
-            inf.stdev = stdev;
+            inf.stdev = Math.round(stdev * 100)/100;
             inf.badEmp = badEmp;
           });
 
           scope.maxInf = _.max(scope.infractions, (inf)=>{
-              return inf.ave;
+              return inf.percent;
           });
 
           //group by staff, group by inf
