@@ -19,10 +19,10 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
             return obj.infraction;
           });
 
-          var numStaff = scope.staff.length;
+          var numInfs = scope.infractionreports.length;
 
           scope.infractions.map(inf => {
-            var temp = grouped[inf.name].length/numStaff;
+            var temp = grouped[inf.name].length/numInfs;
             
             var tempGrouped = _.groupBy(grouped[inf.name], (obj) => {
               return obj.staffId;
@@ -52,17 +52,17 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
               stdev += Math.pow((num - temp), 2);
             });
 
-            if(nums.length < numStaff){
-              var diff = numStaff - nums.length;
+            if(nums.length < numInfs){
+              var diff = numInfs - nums.length;
 
               for(var i = 0; i< diff; i++){
                 stdev += Math.pow(-temp, 2);
               }
             }
 
-            stdev = stdev/numStaff;
+            stdev = stdev/numInfs;
 
-            inf.ave = temp;
+            inf.ave = temp * 100;
             inf.min = _.min(nums);
             inf.max = _.max(nums);
             inf.num = nums.length;
