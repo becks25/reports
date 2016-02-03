@@ -130,12 +130,13 @@ app.run(function ($rootScope, AuthService, $state) {
 
 });
 
-app.run(function(UserFactory, StaffFactory, InfractionsFactory, InfractionReportFactory, IncidentReportFactory) {
+app.run(function(UserFactory, StaffFactory, InfractionsFactory, InfractionReportFactory, IncidentReportFactory, PositiveFactory) {
 
       UserFactory.findAll();
       StaffFactory.findAll();
       InfractionReportFactory.findAll();
       InfractionsFactory.findAll();
       IncidentReportFactory.findAll();
+      PositiveFactory.findAll();
 
   });

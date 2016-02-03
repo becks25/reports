@@ -1,4 +1,4 @@
-app.directive('add', function (UserFactory, StaffFactory, InfractionsFactory) {
+app.directive('add', function (UserFactory, StaffFactory, InfractionsFactory, PositiveFactory) {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/add/add.html',
@@ -45,6 +45,28 @@ app.directive('add', function (UserFactory, StaffFactory, InfractionsFactory) {
               console.log('error?');
             });
           }
+
+          scope.new_positive = {
+            position: scope.positives.length
+          };
+
+          scope.savePositive = () => {
+            PositiveFactory.create(scope.new_positive)
+            .then(pos => {
+              console.log('success!');
+              PositiveFactory.refresh();
+              scope.newPositive.$setPristine();
+              scope.positives.push(pos);
+              scope.new_positive = {
+                position: scope.positives.length
+
+              };
+            }).catch(() => {
+              console.log('error?');
+            });
+
+          }
+
 
           scope.dtstart = new Date('January 1, 2015');
           scope.dtend = new Date();

@@ -1,4 +1,4 @@
-app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staff, infractions, mgmt, incidentReports, infractionReports, suggestions) {
+app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staff, infractions, mgmt, incidentReports, infractionReports, suggestions, positives) {
     $scope.suggestions = suggestions;
     $scope.infractionReports = infractionReports;
     $scope.incidentReports = incidentReports;
@@ -6,6 +6,7 @@ app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staf
     $scope.infractions = infractions;
     $scope.reports = $scope.infractionReports.concat($scope.incidentReports);
     $scope.managers = mgmt;
+    $scope.positives = positives;
 
     $scope.startDate = {
         opened: false

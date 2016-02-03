@@ -39,6 +39,9 @@ app.config(function ($stateProvider) {
             },
             suggestions: (SuggestionsFactory) => {
                 return SuggestionsFactory.findAll();
+            },
+            positives: (PositiveFactory) => {
+                return PositiveFactory.findAll();
             }
         }
     });
