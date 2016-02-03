@@ -130,7 +130,7 @@ app.run(function ($rootScope, AuthService, $state) {
 
 });
 
-app.run(function(UserFactory, StaffFactory, InfractionsFactory, InfractionReportFactory, IncidentReportFactory, PositiveFactory) {
+app.run(function(UserFactory, StaffFactory, InfractionsFactory, InfractionReportFactory, IncidentReportFactory, PositiveFactory, PositiveReportFactory) {
 
       UserFactory.findAll();
       StaffFactory.findAll();
@@ -138,5 +138,7 @@ app.run(function(UserFactory, StaffFactory, InfractionsFactory, InfractionReport
       InfractionsFactory.findAll();
       IncidentReportFactory.findAll();
       PositiveFactory.findAll();
+      PositiveReportFactory.findAll();
+
 
   });

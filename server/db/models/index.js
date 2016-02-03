@@ -8,3 +8,4 @@ require('./infraction_report');
 require('./incident');
 require('./suggestions');
 require('./positive');
+require('./positive_report');

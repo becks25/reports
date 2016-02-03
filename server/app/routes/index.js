@@ -10,6 +10,7 @@ router.use('/infraction_reports', require('./infraction_reports'));
 router.use('/incident_reports', require('./incident_reports'));
 router.use('/suggestions', require('./suggestions'));
 router.use('/positive', require('./positive'));
+router.use('/positive_reports', require('./positive_reports'));
 
 // Make sure this is after all of
 // the registered routes!

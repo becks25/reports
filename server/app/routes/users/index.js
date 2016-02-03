@@ -46,7 +46,7 @@ router.post('/', (req, res, next) => {
         //     else res.status(201).send(newUser)
         // });
     })
-    .then(null, next);
+    .then(null, next); 
 });
 
 //edit one

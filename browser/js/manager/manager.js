@@ -26,23 +26,48 @@ app.config(function ($stateProvider) {
                         return infractionArr;
                     })
             },
-            reports: (IncidentReportFactory, InfractionReportFactory) => {
+            reports: (IncidentReportFactory, InfractionReportFactory, PositiveReportFactory) => {
                 return IncidentReportFactory.findAll()
                     .then(incidents => {
                         return InfractionReportFactory.findAll()
                         .then(infractions => {
-                            var reportsArr = [];
+                            return PositiveReportFactory.findAll()
+                            .then(positives => {
 
-                            incidents.forEach(incident => {
-                                reportsArr.push(incident);
+                                console.log('all pos', positives);
+                                var reportsArr = [];
+
+                                incidents.forEach(incident => {
+                                    reportsArr.push(incident);
+                                });
+
+                                infractions.forEach(infraction => {
+                                    reportsArr.push(infraction);
+                                });
+
+                                positives.forEach(positive => {
+                                    reportsArr.push(positive);
+                                });
+
+                                return reportsArr;
+
                             });
-
-                            infractions.forEach(infraction => {
-                                reportsArr.push(infraction);
-                            });
-
-                            return reportsArr;
+                            
                         })
+                    })
+            },
+            positives: (PositiveFactory) => {
+                return PositiveFactory.findAll()
+                    .then(positives => {
+                        var positiveArr = [];
+
+                        positives.forEach(positive => {
+                            positiveArr.push({
+                                name: positive.name,
+                                checked: false
+                            });
+                        });
+                        return positiveArr;
                     })
             }
         }
@@ -50,11 +75,12 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, staff, infractions, reports, InfractionReportFactory, IncidentReportFactory, SuggestionsFactory, $q) {
+app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, staff, infractions, reports, InfractionReportFactory, IncidentReportFactory, SuggestionsFactory, $q, positives, PositiveReportFactory) {
     $scope.user = Session.user;
     $scope.staff = staff;
     $scope.infractions = infractions;
     $scope.staffNames = [];
+    $scope.positives = positives;
 
     staff.forEach(employee => {
         $scope.staffNames.push(employee.name);
@@ -91,6 +117,7 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
         });
       }
 
+      //INFRACTIONS
     var reset_inf_report = () => {
         $scope.infraction_report = {};
         $scope.infraction_report = {
@@ -164,6 +191,76 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
                 $scope.disable_inf_btn = false;
                 console.log('successfully saved');
                 $scope.inf_success=true;
+                $state.go($state.current, {}, {reload: true});
+            });
+    };
+
+    //POSITIVES
+
+    var reset_pos_report = () => {
+        $scope.positives_report = {};
+        $scope.positives_report = {
+            manager: $scope.user._id,
+            managerName: $scope.user.name
+        };
+        $scope.positives.forEach(pos => {
+            pos.checked = false;
+        });
+
+    }
+
+    reset_pos_report();
+    $scope.disable_pos_btn = false;
+    $scope.pos_success = false;
+    $scope.no_pos = false;
+
+    $scope.savePositive = () => {
+
+        var checked_pos = [];
+
+        $scope.positives.forEach(pos => {
+            if(pos.checked) checked_pos.push(pos.name);
+        });
+
+        if(checked_pos.length == 0){
+            $scope.no_pos = true;
+            return;
+        }
+
+        $scope.disable_pos_btn = true;
+        console.log('save pressed');
+        
+        //Add staff id number to obj
+        $scope.staff.forEach(employee => {
+            if(employee.name === $scope.positive_report.staffName){
+                $scope.positive_report.staff = employee._id;
+            }
+        });
+
+
+        var promised_pos = [];
+        checked_pos.forEach(pos => {
+            var positive = {
+                manager: $scope.user.id,
+                managerName: $scope.user.name,
+                staffName: $scope.positive_report.staffName,
+                staff: $scope.positive_report.staff,
+                positive: pos
+            }
+
+            promised_pos.push(PositiveReportFactory.create(positive));
+       
+
+        });
+
+        $q.all(promised_pos)
+            .then(saved => {
+                console.log(saved);
+                $scope.newPositive.$setPristine();
+                reset_pos_report();
+                $scope.disable_pos_btn = false;
+                console.log('successfully saved');
+                $scope.pos_success=true;
                 $state.go($state.current, {}, {reload: true});
             });
     };
