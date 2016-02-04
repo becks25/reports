@@ -10,10 +10,18 @@ app.directive('staffDetails', function (StaffFactory, UserFactory) {
         link: (scope, elem, attr) => {
           scope.infractions = scope.reports.filter(report => {
             if(!scope.mgmt){
-              return report.staffName && report.staffName === scope.employee.name;
+              return report.staffName && report.staffName === scope.employee.name && report.infraction;
             }
 
-            return report.staffName && report.managerName === scope.employee.name;
+            return report.staffName && report.managerName === scope.employee.name && report.infraction;
+          });
+
+          scope.positives = scope.reports.filter(report => {
+            if(!scope.mgmt){
+              return report.staffName && report.staffName === scope.employee.name && report.positive;
+            }
+
+            return report.staffName && report.managerName === scope.employee.name && report.positive;
           });
 
           scope.incidents = scope.reports.filter(report => {
@@ -24,7 +32,9 @@ app.directive('staffDetails', function (StaffFactory, UserFactory) {
 
           });
 
-          scope.myreports = scope.infractions.concat(scope.incidents);
+
+
+          scope.myreports = scope.infractions.concat(scope.incidents).concat(scope.positives);
 
           scope.remove = () => {
             if(!scope.mgmt){

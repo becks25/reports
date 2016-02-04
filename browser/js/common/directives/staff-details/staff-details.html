@@ -10,13 +10,14 @@
 <div class="panel-body">
 	<p class="col-sm-2 col-xs-4">{{infractions.length}} Inf.</p>
 	<p class="col-sm-2 col-xs-4">{{incidents.length}} Inc.</p>
+	<p class="col-sm-2 col-xs-4">{{positives.length}} Pos.</p>
 
 	<p class="clearfix"></p>
 	<div class="employee-reports">
 		<div ng-repeat="report in myreports | orderBy: 'report.timestamp': true">
 			<div class="col-sm-12" ng-class="{'even': $even}">
 				<p class="col-sm-4">{{report.timestamp | date: fulltime}}</p>
-				<p class="col-sm-5">{{report.infraction || 'Incident'}}</p>
+				<p class="col-sm-5">{{report.infraction || report.positive || 'Incident'}}</p>
 				<p class="col-sm-3" ng-if="!mgmt">{{report.managerName}}</p>
 				<p class="col-sm-3" ng-if="mgmt">{{report.staffName || report.staffNames.join(', ')}}</p>
 			</div>
