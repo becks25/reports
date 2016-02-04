@@ -132,7 +132,6 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
               }
             }
 
-            console.log(tempGrouped);
             average = average/nums.length;
 
             tempGrouped = _.sortBy()

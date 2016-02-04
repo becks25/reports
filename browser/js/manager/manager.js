@@ -22,7 +22,7 @@ app.config(function ($stateProvider) {
                                 checked: false
                             });
                         });
-                        console.log(infractionArr);
+
                         return infractionArr;
                     })
             },
@@ -89,8 +89,7 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
     $scope.reports = reports.filter(report => {
         return report.managerId == $scope.user._id;
     });
-    console.log('all', reports);
-    console.log('me', $scope.reports);
+    
     var reset_suggestions = () => {
         $scope.suggestions  = {};
 
