@@ -8,66 +8,95 @@
 		<p>Time</p>
 
 		<p>Download data</p>
-		<p>Infractions</p>
-			<div ng-repeat="inf in infractions">
-				<div class="col-sm-4 col-xs-12">
-					<b>{{inf.name}}:</b>
-				</div>
+		<div class="panel">
 
-				<!--ave shown as progbar-->
-				<div class="col-sm-8 col-xs-12">
-					<div class="progress">
-						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': '{{inf.percent}}%'}">
-							<span><b>{{inf.percent}}%</b></span>
+			<div class="panel-heading clearfix">
+				<h4>Infractions</h4>
+
+			</div>
+
+			<div class="panel-body">
+				<div ng-repeat="inf in infractions">
+					<div class="col-sm-4 col-xs-12">
+						<h4>{{inf.name}}</h4>
+					</div>
+
+					<!--ave shown as progbar-->
+					<div class="col-sm-8 col-xs-12">
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': '{{inf.percent}}%'}">
+								<span><b>{{inf.percent}}%</b></span>
+							</div>
+						</div>
+
+					</div>
+
+
+					<!--details for inf-->
+					<div class="col-xs-12 ">
+						<div class="col-sm-4 col-xs-12">
+							<p>
+								<b>Total #:</b> {{inf.num}}
+							
+							</p>
+
+							<p>
+								<b>Average: </b>
+								{{inf.ave}}
+							</p>
+
+							<p>
+								<b>Stdev:
+								</b>
+								{{inf.stdev}}
+							</p>
+						</div>
+					
+						<div class="col-sm-8 col-xs-12">
+							<div class="col-sm-12">
+								<div class="col-sm-7">
+									<b>Employee</b>
+								</div>
+								<div class="col-sm-5">
+									<b># Offenses</b>
+								</div>
+							</div>
+
+							<div ng-repeat="empl in inf.badEmp | orderBy: '-num' | limitTo:10" class="col-sm-12 clearfix">
+								<div class="col-sm-7">
+									{{empl.name}}
+								</div>
+								<div class="col-sm-5">
+									{{empl.num}}
+								</div>
+							</div>
+							<!-- <table>
+								<tr>
+									<th>
+										Employee
+									</th>
+
+									<th>
+										Number of offenses
+									</th>
+								</tr>
+
+								<tr ng-repeat="empl in inf.badEmp | orderBy:'-num' | limitTo:10">
+									<td class="col-sm-6">
+										{{empl.name}}
+									</td>
+
+									<td class="col-sm-6">
+										{{empl.num}}
+									</td>
+								</tr>
+							</table> -->
+
 						</div>
 					</div>
 
-				</div>
-
-
-				<!--details for inf-->
-				<div class="col-xs-12 panel-body">
-					<p>
-						<b>Total #:</b> {{inf.num}}
-					
-					</p>
-
-					<p>
-						<b>Average: </b>
-						{{inf.ave}}
-					</p>
-
-					<p>
-						<b>Stdev:
-						</b>
-						{{inf.stdev}}
-					</p>
-
-				
-					<div class="panel-body">
-						<table>
-							<tr>
-								<th>
-									Employee
-								</th>
-
-								<th>
-									Number of offenses
-								</th>
-							</tr>
-
-							<tr ng-repeat="empl in inf.badEmp | orderBy:'-num' | limitTo:10">
-								<td class="col-sm-6">
-									{{empl.name}}
-								</td>
-
-								<td class="col-sm-6">
-									{{empl.num}}
-								</td>
-							</tr>
-						</table>
-
-					</div>
+					<div class="clearfix"></div>
+					<hr />
 				</div>
 
 			</div>
