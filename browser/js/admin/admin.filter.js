@@ -1,5 +1,5 @@
 app.filter('reportFilter', function(){
-    return function(reports, managers, staff, infractions, type, cops, dtstart, dtend){
+    return function(reports, managers, staff, infractions, type, cops, dtstart, dtend, positives){
         var filtered = [];
 
         var checkedManagers = [];
@@ -17,6 +17,13 @@ app.filter('reportFilter', function(){
         if(type.Infraction){
             infractions.forEach(inf => {
                 if(inf.checked) checkedInf.push(inf.name);
+            });
+        };
+
+        var checkedPos = [];
+        if(type.Positive){
+            positives.forEach(pos => {
+                if(pos.checked) checkedPos.push(pos.name);
             });
         };
 
@@ -47,7 +54,11 @@ app.filter('reportFilter', function(){
             }else valid = false;
             if(report.staffName){
                 if(checkedStaff.indexOf(report.staffName) === -1) valid = false;
-                if(checkedInf.indexOf(report.infraction) === -1) valid = false;
+                if(report.infraction){
+                    if(checkedInf.indexOf(report.infraction) === -1) valid = false;
+                }else{
+                    if(checkedPos.indexOf(report.positive) === -1) valid = false;
+                }
             }else{
                 if(!report.staffNames.some(name => checkedStaff.indexOf(name) !== -1)) valid = false;
                 if(!type.Incident) valid = false;

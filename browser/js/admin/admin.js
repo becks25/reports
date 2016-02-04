@@ -41,7 +41,23 @@ app.config(function ($stateProvider) {
                 return SuggestionsFactory.findAll();
             },
             positives: (PositiveFactory) => {
-                return PositiveFactory.findAll();
+                return PositiveFactory.findAll()
+                    .then(positives => {
+                        var positivesArr = [];
+
+                        positives.forEach(positive => {
+                            var newObj = {
+                                name: positive.name,
+                                checked: true,
+                                _id: positive._id
+                            }
+                            positivesArr.push(newObj);
+                        });
+                        return positivesArr;
+                    })
+            },
+            positiveReports: (PositiveReportFactory) => {
+                return PositiveReportFactory.findAll();
             }
         }
     });

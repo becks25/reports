@@ -1,10 +1,11 @@
-app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staff, infractions, mgmt, incidentReports, infractionReports, suggestions, positives) {
+app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staff, infractions, mgmt, incidentReports, infractionReports, suggestions, positives, positiveReports) {
     $scope.suggestions = suggestions;
     $scope.infractionReports = infractionReports;
     $scope.incidentReports = incidentReports;
+    $scope.positiveReports = positiveReports;
     $scope.staff = staff;
     $scope.infractions = infractions;
-    $scope.reports = $scope.infractionReports.concat($scope.incidentReports);
+    $scope.reports = $scope.infractionReports.concat($scope.incidentReports).concat($scope.positiveReports);
     $scope.managers = mgmt;
     $scope.positives = positives;
 

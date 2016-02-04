@@ -1,6 +1,7 @@
 <div class="panel-heading blue-header">
 	<h3>Reports</h3>
 </div>
+
 <!--sidebar filter-->
 <div class="panel-body">
 	<div class="col-sm-2">
@@ -52,6 +53,19 @@
 			</div>
 		</div>
 
+		<!--positive filter-->
+		<div class="filter-category" ng-click="positiveCollapsed = !positiveCollapsed">Positives</div>
+
+		<div>
+			<div class="filter-options">
+				<p ng-repeat="pos in positives">
+					<input type="checkbox" value="pos.name" checked="pos.checked" ng-model="positives[$index].checked">
+					 {{pos.name}}
+				</p>
+			</div>
+		</div>
+
+
 		<!--incident filter-->
 		<div class="filter-category" ng-click="incidentCollapsed = !incidentCollapsed">Cops Called</div>
 
@@ -88,7 +102,8 @@
 	            </p>
        		</div>
 	    </div>
-		<report class="col-sm-4 col-xs-12" ng-repeat="report in reports | reportFilter: managers: staff: infractions: type: cops: dtstart : dtend| orderBy: 'report.timestamp': true " report="report"></report>
+
+		<report class="col-sm-4 col-xs-12" ng-repeat="report in reports | reportFilter: managers: staff: infractions: type: cops: dtstart : dtend: positives| orderBy: 'report.timestamp': true " report="report"></report>
 	</div>
 
 </div>

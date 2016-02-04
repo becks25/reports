@@ -6,17 +6,20 @@ app.directive('allReports', function () {
           reports: "=",
           managers: "=",
           staff: "=",
-          infractions: "="
+          infractions: "=",
+          positives: "="
         },
         link: (scope, elem, attr) => {
           scope.mgmtCollapsed = false;
           scope.staffCollapsed = false;
           scope.infractionCollapsed = false;
           scope.incidentCollapsed = false;
+          scope.positiveCollapsed = false;
           scope.dateCollapsed = false;
           scope.type = {
             Infraction: true,
-            Incident: true
+            Incident: true,
+            Positive: true
           };
 
           scope.cops = {
