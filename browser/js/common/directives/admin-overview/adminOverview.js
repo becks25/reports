@@ -7,7 +7,9 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
           'incidents': '=',
           'infractions': '=',
           'staff': '=',
-          'allreports': '='
+          'allreports': '=',
+          'positives': '=',
+          'positivereports':'='
         },
         link: (scope, elem, attr) => {
           /**INFRACTIONS
@@ -88,6 +90,91 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
             for(var staf in byStaff){
               var infByStaff = _.groupBy(byStaff[staf], (obj) => {
                 return obj.infraction;
+              });
+            }
+            //stdev of each (sum of length of each-ave/total)
+            //console.log('infs', infByStaff);
+          }
+
+
+          //POSITIVES
+          var groupedPositive = _.groupBy(scope.positivereports, (obj) => {
+            return obj.positive;
+          });
+
+
+          var numPos = scope.positivereports.length;
+
+          scope.positives.map(pos => {
+
+            if(!groupedPositive[pos.name]) return;
+            var temp = groupedPositive[pos.name].length/numPos;
+            
+            var tempGrouped = _.groupBy(groupedPositive[pos.name], (obj) => {
+              return obj.staffId;
+            });
+
+
+            var nums = [];
+            var goodEmp = [];
+            var average = 0;
+
+            for(staf in tempGrouped){
+              nums.push(tempGrouped[staf].length);
+              average+= tempGrouped[staf].length;
+              tempGrouped[staf].num = tempGrouped[staf].length;
+              if(tempGrouped[staf].length> temp){
+                goodEmp.push({
+                  name: tempGrouped[staf][0].staffName,
+                  num: tempGrouped[staf].length,
+                  id: staf
+                });
+              }
+            }
+
+            console.log(tempGrouped);
+            average = average/nums.length;
+
+            tempGrouped = _.sortBy()
+
+            var stdev = 0;
+
+            nums.forEach(num => {
+              stdev += Math.pow((num - temp), 2);
+            });
+
+            if(nums.length < numPos){
+              var diff = numPos - nums.length;
+
+              for(var i = 0; i< diff; i++){
+                stdev += Math.pow(-temp, 2);
+              }
+            }
+
+            stdev = stdev/numPos;
+
+            pos.percent = Math.round(temp * 10000)/100;
+            pos.ave = Math.round(average * 100)/100;
+            pos.min = _.min(nums);
+            pos.max = _.max(nums);
+            pos.num = nums.length;
+            pos.stdev = Math.round(stdev * 100)/100;
+            pos.goodEmp = goodEmp;
+          });
+
+          scope.maxPos = _.max(scope.infractions, (pos)=>{
+              return pos.percent;
+          });
+
+          //group by staff, group by inf
+          for(var pos in groupedPositive){
+            var byStaff = _.groupBy(groupedPositive[pos], (obj) => {
+              return obj.staffId;
+            });
+
+            for(var staf in byStaff){
+              var posByStaff = _.groupBy(byStaff[staf], (obj) => {
+                return obj.positive;
               });
             }
             //stdev of each (sum of length of each-ave/total)
