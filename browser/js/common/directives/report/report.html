@@ -3,7 +3,8 @@
 		<div class="clearfix">
 			<h4 class="pull-left">
 				<b ng-if="report.report">Incident</b>
-				<b ng-if="!report.report">Infraction</b>
+				<b ng-if="report.infraction">Infraction</b>
+				<b ng-if="report.positive">Positive</b>
 			</h4>
 
 			<p class="pull-right">
@@ -23,6 +24,10 @@
 
 		<p ng-if="report.infraction">
 			<b>Infraction: </b> {{report.infraction}}
+		</p>
+
+		<p ng-if="report.positive">
+			<b>Positive: </b> {{report.positive}}
 		</p>
 
 		<p ng-if="report.report" class="text-center" ng-click="open()">

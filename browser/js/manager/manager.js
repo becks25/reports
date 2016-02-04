@@ -34,7 +34,6 @@ app.config(function ($stateProvider) {
                             return PositiveReportFactory.findAll()
                             .then(positives => {
 
-                                console.log('all pos', positives);
                                 var reportsArr = [];
 
                                 incidents.forEach(incident => {
@@ -86,10 +85,12 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
         $scope.staffNames.push(employee.name);
     });
 
+
     $scope.reports = reports.filter(report => {
         return report.managerId == $scope.user._id;
     });
-
+    console.log('all', reports);
+    console.log('me', $scope.reports);
     var reset_suggestions = () => {
         $scope.suggestions  = {};
 
@@ -241,7 +242,7 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
         var promised_pos = [];
         checked_pos.forEach(pos => {
             var positive = {
-                manager: $scope.user.id,
+                manager: $scope.user._id,
                 managerName: $scope.user.name,
                 staffName: $scope.positive_report.staffName,
                 staff: $scope.positive_report.staff,
