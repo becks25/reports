@@ -30,7 +30,7 @@ router.post('/', (req, res, next) => {
 
 //edit one
 router.put('/:reportId', (req, res, next) => {
-    if (!req.user.isAdmin && !req.user.superAdmin || !req.expired){
+    if (!req.user.isAdmin && !req.user.superAdmin || req.expired){
         res.sendStatus(401);
         return;
     }
@@ -42,17 +42,17 @@ router.put('/:reportId', (req, res, next) => {
 
 //delete one
 router.delete('/:reportId', (req, res, next) => {
-    if (!req.user.isAdmin && !req.user.superAdmin || !req.expired){
+    if (!req.user.isAdmin && !req.user.superAdmin || req.expired){
         res.sendStatus(401);
         return;
     }
-    Positive.remove({_id: req.foundPositive._id}).exec()
+    Report.remove({_id: req.foundPositive._id}).exec()
     .then(removed => res.status(200).send(removed))
     .then(null, next);
 });
 
 router.param('reportId', (req, res, next, reportId) => {
-    Positive.findById(reportId)
+    Report.findById(reportId)
     .then(positive => {
             var expired = (Date.now() - positive.timeStamp)/1000 > 43200;
             req.foundPositive = positive;

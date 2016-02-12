@@ -27,7 +27,7 @@ router.post('/', (req, res, next) => {
 
 //edit one
 router.put('/:positiveId', (req, res, next) => {
-    if (!req.user.isAdmin && !req.user.superAdmin){
+    if (!req.user.isAdmin && !req.user.superAdmin || req.expired){
         res.sendStatus(401);
         return;
     }
@@ -39,7 +39,7 @@ router.put('/:positiveId', (req, res, next) => {
 
 //delete one
 router.delete('/:positiveId', (req, res, next) => {
-    if (!req.user.isAdmin && !req.user.superAdmin){
+    if (!req.user.isAdmin && !req.user.superAdmin || req.expired){
         res.sendStatus(401);
         return;
     }
@@ -51,7 +51,9 @@ router.delete('/:positiveId', (req, res, next) => {
 router.param('positiveId', (req, res, next, positiveId) => {
     Positive.findById(positiveId)
     .then(positive => {
+            var expired = (Date.now() - new Date(positive.timestamp).getTime()) > 43200000;
             req.foundPositive = positive;
+            req.expired = expired;
             next();
         })
     .then(null, next)

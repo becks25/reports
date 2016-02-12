@@ -30,7 +30,7 @@ router.post('/', (req, res, next) => {
 
 //edit one
 router.put('/:reportId', (req, res, next) => {
-    if (!req.user.isAdmin && !req.user.superAdmin || !req.expired){
+    if (!req.user.isAdmin && !req.user.superAdmin || req.expired){
         res.sendStatus(401);
         return;
     }
@@ -42,19 +42,19 @@ router.put('/:reportId', (req, res, next) => {
 
 //delete one
 router.delete('/:reportId', (req, res, next) => {
-    if (!req.user.isAdmin && !req.user.superAdmin || !req.expired){
+    if (!req.user.isAdmin && !req.user.superAdmin || req.expired){
         res.sendStatus(401);
         return;
     }
-    Infraction.remove({_id: req.foundInfraction._id}).exec()
+    Report.remove({_id: req.foundInfraction._id}).exec()
     .then(removed => res.status(200).send(removed))
     .then(null, next);
 });
 
 router.param('reportId', (req, res, next, reportId) => {
-    Infraction.findById(reportId)
+    Report.findById(reportId)
     .then(infraction => {
-            var expired = (Date.now() - infraction.timeStamp)/1000 > 43200;
+            var expired = (Date.now() - new Date(infraction.timeStamp).getTime()) > 43200000;
             req.foundInfraction = infraction;
             req.expired = expired;
 

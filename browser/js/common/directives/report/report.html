@@ -2,6 +2,7 @@
 	<div class="panel-heading gray-header">
 		<div class="clearfix">
 			<h4 class="pull-left">
+				<span ng-if="deletable" class="red glyphicon glyphicon-remove" ng-click="remove()"></span>
 				<b ng-if="report.report">Incident</b>
 				<b ng-if="report.infraction">Infraction</b>
 				<b ng-if="report.positive">Positive</b>
