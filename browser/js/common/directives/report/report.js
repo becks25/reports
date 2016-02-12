@@ -8,7 +8,6 @@ app.directive('report', function ($uibModal, IncidentReportFactory, InfractionRe
         link: (scope, elem, attr) => {
           scope.open = function () {
             CurrentFactory.currentReport = scope.report;
-            console.log(scope.report);
             var modalInstance = $uibModal.open({
               templateUrl: 'js/common/directives/report-modal/report-modal.html',
               controller: 'modalCtrl'
@@ -25,7 +24,6 @@ app.directive('report', function ($uibModal, IncidentReportFactory, InfractionRe
 
           scope.remove = () => {
             if(scope.report.infraction){
-              console.log('here', scope.report);
               InfractionReportFactory.destroy(scope.report)
                 .then(deleted => {
                   console.log('successfully deleted infraction');
