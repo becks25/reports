@@ -29,7 +29,10 @@ app.filter('reportFilter', function(){
 
         reports.forEach(report => {
             var valid = true;
-            if(checkedManagers.indexOf(report.managerName) === -1) valid = false;
+
+            if(!report) return false; 
+
+            if(report && checkedManagers.indexOf(report.managerName) === -1) valid = false;
 
             var date = new Date(report.timestamp);
             if(date.getFullYear() >= dtstart.getFullYear() && date.getFullYear() <= dtend.getFullYear()){

@@ -9,6 +9,7 @@ app.directive('staffDetails', function (StaffFactory, UserFactory) {
         },
         link: (scope, elem, attr) => {
           scope.infractions = scope.reports.filter(report => {
+            if(!report) return;
             if(!scope.mgmt){
               return report.staffName && report.staffName === scope.employee.name && report.infraction;
             }
@@ -17,6 +18,7 @@ app.directive('staffDetails', function (StaffFactory, UserFactory) {
           });
 
           scope.positives = scope.reports.filter(report => {
+            if(!report) return;
             if(!scope.mgmt){
               return report.staffName && report.staffName === scope.employee.name && report.positive;
             }
@@ -25,6 +27,7 @@ app.directive('staffDetails', function (StaffFactory, UserFactory) {
           });
 
           scope.incidents = scope.reports.filter(report => {
+            if(!report) return;
             if(!scope.mgmt){
               return report.staffNames && report.staffNames.indexOf(scope.employee.name) !== -1;
             }
