@@ -87,8 +87,7 @@ app.controller('ManagerCtrl', function ($scope, AuthService, Session, $state, st
 
 
     $scope.reports = reports.filter(report => {
-
-        return report.managerId == $scope.user._id || report.managerName == $scope.user.name;
+        if(report) return report.managerId == $scope.user._id || report.managerName == $scope.user.name;
     });
     
     var reset_suggestions = () => {
