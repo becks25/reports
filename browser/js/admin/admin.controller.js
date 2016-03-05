@@ -40,7 +40,9 @@ app.controller('AdminCtrl', function ($scope, AuthService, Session, $state, staf
     $scope.reports.forEach(report => {
         var staff = [];
 
-        if(report && report.staffName){
+        if(!report) return;
+        
+        if(report.staffName){
             staff.push(report.staffName);
         }else{
             staff.concat(report.staffNames);
