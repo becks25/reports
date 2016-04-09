@@ -182,7 +182,45 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
           
 
           //Create downloadable version of data
-          
+        scope.download_infractions = function(){
+        //get all infractions & positives:
+        // total, stdev, average
+        //inf.name, inf.num, inf.ave, inf.stdev
+        console.log('here');
+         var csv = '';
+          var col = ',';
+          var row = '\n';
+
+          csv += 'Name' + col + 'Number' + col + 'Average' + 'St Dev' + row;
+
+          scope.infractions.forEach(function(inf){
+            csv+= inf.name + col + inf.num + col + inf.ave + col + inf.stdev + row;
+          });
+
+          scope.positives.forEach(function(pos){
+            csv+= pos.name + col + pos.num + col + pos.ave + col + pos.stdev + row;
+          });
+
+
+           var data, filename, link;
+
+
+          filename = 'InfractionsAndPositives.csv';
+
+          if (!csv.match(/^data:text\/csv/i)) {
+              csv = 'data:text/csv;charset=utf-8,' + csv;
+          }
+          data = encodeURI(csv);
+          console.log(data);
+
+          link = document.createElement('a');
+          link.setAttribute('href', data);
+
+          link.setAttribute('download', filename);
+          document.body.appendChild(link);
+          link.click();
+ 
+           };
 
 
         }
