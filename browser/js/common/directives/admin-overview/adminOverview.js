@@ -186,7 +186,6 @@ app.directive('adminOverview', function (UserFactory, StaffFactory, InfractionsF
         //get all infractions & positives:
         // total, stdev, average
         //inf.name, inf.num, inf.ave, inf.stdev
-        console.log('here');
          var csv = '';
           var col = ',';
           var row = '\n';
