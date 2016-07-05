@@ -49,6 +49,7 @@ app.directive('allReports', function () {
 
             csv += 'Type' + col + 'Date' + col + 'Manager' + col +'Staff' + col + 'InfPos' + col + 'Report' +col + 'Disciplinary' +row;
             
+            console.log('length', scope.reports.length);
             scope.reports.forEach(function(report){
               if(report.report) csv+= 'Incident' + col;
               if(report.infraction) csv += 'Infraction' + col;
