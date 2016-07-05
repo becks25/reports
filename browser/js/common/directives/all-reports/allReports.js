@@ -51,6 +51,9 @@ app.directive('allReports', function () {
             
             console.log('length', scope.reports.length);
             scope.reports.forEach(function(report){
+              console.log('report', report);
+
+              if(report){
               if(report.report) csv+= 'Incident' + col;
               if(report.infraction) csv += 'Infraction' + col;
               if(report.positive) csv += 'Positive' + col;
@@ -67,6 +70,7 @@ app.directive('allReports', function () {
               if(report.report) csv += report.report + col + report.disciplinary;
 
               csv+= row;
+              }
             });
 
 
