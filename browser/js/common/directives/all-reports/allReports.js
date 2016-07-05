@@ -49,9 +49,7 @@ app.directive('allReports', function () {
 
             csv += 'Type' + col + 'Date' + col + 'Manager' + col +'Staff' + col + 'InfPos' + col + 'Report' +col + 'Disciplinary' +row;
             
-            console.log('length', scope.reports.length);
             scope.reports.forEach(function(report){
-              console.log('report', report);
 
               if(report){
               if(report.report) csv+= 'Incident' + col;
@@ -83,7 +81,6 @@ app.directive('allReports', function () {
                 csv = 'data:text/csv;charset=utf-8,' + csv;
             }
             data = encodeURI(csv);
-            console.log(data);
 
             link = document.createElement('a');
             link.setAttribute('href', data);
